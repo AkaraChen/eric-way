@@ -18,5 +18,3 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
-
-The `skills/` directory is the repo source. Keep the global copies under `/Users/akrc/.codex/skills/` in sync after skill changes.
