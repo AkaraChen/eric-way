@@ -11,3 +11,20 @@
 2. Put query keys in one shared file named `queryKeys.ts` or `query-keys.ts`; do not inline query key arrays across components.
 3. Prefer `queryOptions` and `mutationOptions` helpers for reusable feature queries instead of hiding everything in page components.
 4. Mutations should invalidate the narrow query groups they affect, not refetch the whole app.
+
+## State
+
+1. Put server state in TanStack Query.
+2. Put persistent UI preferences in a small store or local storage wrapper, with clamp, sanitize, and migration logic when needed.
+3. Put complex runtime state in a dedicated store or state machine.
+4. Keep form state, selected rows, search text, filters, dialog state, and panel mode near the page or component that owns the interaction.
+
+## Product Surfaces
+
+1. Treat app UI and website UI as different surfaces.
+2. App UI should be dense, token-based, and built for repeated use: sidebars, lists, toolbars, split panes, panels, skeletons, and error states.
+3. Website UI can use larger imagery, display typography, page-level motion, and custom CSS when it is selling or explaining the product.
+
+## Tests
+
+1. Add focused hook or component tests when the component owns async behavior, keyboard behavior, selection behavior, or cache invalidation.
