@@ -1,6 +1,6 @@
 # Eric Way
 
-A small index of code style notes.
+Code style notes and Codex skills for Eric's preferred way of building software.
 
 ## Docs
 
@@ -11,3 +11,12 @@ A small index of code style notes.
 - [Rust](docs/rust.md)
 - [TanStack Query](docs/tanstack-query.md)
 - [Review](docs/review.md)
+
+## Skills
+
+- [`eric-frontend`](skills/eric-frontend/SKILL.md)
+- [`eric-backend`](skills/eric-backend/SKILL.md)
+- [`eric-desktop`](skills/eric-desktop/SKILL.md)
+- [`eric-review`](skills/eric-review/SKILL.md)
+
+The `skills/` directory is the repo source. Keep the global copies under `/Users/akrc/.codex/skills/` in sync after skill changes.
