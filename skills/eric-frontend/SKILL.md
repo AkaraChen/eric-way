@@ -21,6 +21,7 @@ Use this skill for frontend implementation or frontend review. Keep the codebase
 - Keep app entrypoints thin: providers, router, theme, toast, query client, and startup wiring only.
 - Use TypeScript for application code unless the repo already uses JavaScript for config or scripts.
 - Use Tailwind utilities, component-system props, or existing UI primitives; keep global CSS for tokens, reset, fonts, third-party patches, and tiny shared animation utilities.
+- Do not manually concatenate class names with strings or template literals. First find the repo's existing helper around `clsx`, `classnames`, `cva`, `twMerge`, or similar packages; if none exists, call the package export directly.
 - Keep page-specific or feature-specific business classes out of global CSS.
 - Treat non-trivial data as server state from the renderer's point of view, even when it is local.
 - Keep interaction state such as toast, navigation, panel state, form reset, selected rows, search text, filters, and dialogs near the owner component.
@@ -31,4 +32,5 @@ Use this skill for frontend implementation or frontend review. Keep the codebase
 
 - Do not invent a new design system when the repo already has one.
 - Do not move business/page styling into global CSS.
+- Do not hand-roll class name composition when the repo has a helper or installed package for it.
 - Do not put request functions, query keys, or invalidation logic inline in page components when the repo already has a request/cache layer.

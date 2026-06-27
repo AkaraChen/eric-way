@@ -20,7 +20,7 @@ Use this skill for review tasks. Start from concrete findings, not a broad summa
 - First check formatting, indentation, naming, and local style consistency.
 - Then check over-defensive code, unnecessary complexity, speculative abstraction, poor modularity, and missing focused tests.
 - Do not ask for runtime validation that duplicates static types unless data crosses an untrusted boundary.
-- Frontend: flag `any`, large render branching, business classes in global CSS, and inline request/query-key/invalidation code when the repo has a request/cache layer.
+- Frontend: flag `any`, large render branching, manually concatenated `className` strings, business classes in global CSS, and inline request/query-key/invalidation code when the repo has a request/cache layer.
 - React: assume compiler unless the repo proves otherwise; do not ask for `useMemo` or `useCallback` unless stable identity is required.
 - React: challenge `useEffect`; prefer TanStack Query for data fetching and `useSyncExternalStore` for external subscriptions.
 - Backend: keep transport thin, preserve service/core boundaries, use typed Rust errors in reusable code, and validate at trust boundaries.
