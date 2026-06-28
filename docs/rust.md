@@ -4,8 +4,10 @@
 
 1. Model the domain first with explicit structs, enums, state types, and ID newtypes.
 2. Keep modules small and named by what they own, not by vague layers like `utils`.
-3. Put side effects at the edge and keep core functions easy to call from tests.
-4. Prefer typed state transitions: commands produce plans or effects, events update state, and adapters translate effects into external work.
+3. Large modules are not allowed. Split a module when it starts mixing unrelated concepts, public APIs, persistence, adapters, tests, or state-machine concerns that can be named separately.
+4. Choose split boundaries by project scale and code relatedness: keep tightly coupled code together in small projects, but split by domain concept or responsibility once files become hard to scan or changes regularly touch only one subset.
+5. Put side effects at the edge and keep core functions easy to call from tests.
+6. Prefer typed state transitions: commands produce plans or effects, events update state, and adapters translate effects into external work.
 
 ## Errors
 

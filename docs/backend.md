@@ -11,5 +11,6 @@
 
 1. Keep transport entrypoints thin. They should parse input, read state, call the service/core layer, and map the result back to the caller.
 2. Split backend code by responsibility: `model` for shared data types, `repo` for persistence, `service` for business rules, and `infra` for adapters to external systems.
-3. Do not let transport code call `repo` or `infra` directly when business rules are involved; route it through `service` or `core`.
-4. Keep app bootstrap in the entrypoint: runtime setup, managed state, database initialization, migrations, logging, and shutdown cleanup.
+3. Do not allow large Rust modules. For small projects, keep closely related code together; as the project grows, split modules by domain ownership and responsibility instead of piling unrelated logic into one file.
+4. Do not let transport code call `repo` or `infra` directly when business rules are involved; route it through `service` or `core`.
+5. Keep app bootstrap in the entrypoint: runtime setup, managed state, database initialization, migrations, logging, and shutdown cleanup.
