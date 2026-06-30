@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric JavaScript"
+  short_description: "Apply Eric JavaScript standards."
+  default_prompt: "Use Eric JavaScript standards for this JavaScript or TypeScript task."

@@ -11,8 +11,9 @@ Use this skill for desktop app implementation or desktop review.
 
 1. Inspect the actual desktop stack, dev runner, packaged build flow, renderer entrypoint, native entrypoint, and generated contract flow.
 2. Use `$eric-frontend` for renderer UI/data-flow work and `$eric-backend` for native service, persistence, validation, or Rust/TypeScript backend work.
-3. Keep native/runtime work off the UI thread and keep renderer data access behind the existing API/query layer.
-4. Validate the path that matters: dev mode, packaged mode, generated contracts, typecheck, or packaging metadata depending on the change.
+3. For JavaScript, TypeScript, Node, package-manager, install, or script-runner work, also use `$eric-javascript`.
+4. Keep native/runtime work off the UI thread and keep renderer data access behind the existing API/query layer.
+5. Validate the path that matters: dev mode, packaged mode, generated contracts, typecheck, or packaging metadata depending on the change.
 
 ## Standards
 

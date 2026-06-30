@@ -10,9 +10,10 @@ Use this skill for backend implementation or backend review.
 ## Workflow
 
 1. Inspect the existing backend stack, entrypoints, transport layer, service/core layer, persistence layer, and test commands.
-2. Keep transport code thin and route business rules through the existing service/core layer.
-3. Reuse current DTOs, schemas, repositories, migrations, and error types before adding new ones.
-4. Verify with the narrowest backend check that covers the touched path.
+2. For JavaScript, TypeScript, Node, package-manager, install, or script-runner work, also use `$eric-javascript`.
+3. Keep transport code thin and route business rules through the existing service/core layer.
+4. Reuse current DTOs, schemas, repositories, migrations, and error types before adding new ones.
+5. Verify with the narrowest backend check that covers the touched path.
 
 ## Standards
 
