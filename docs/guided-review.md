@@ -1,175 +1,177 @@
 # Guided Review
 
-Guided Review 是一种把 PR diff 读成“故事线”的 review 交付物：先完整读完 diff，再把变更拆成几条可追踪的线，最后输出一份带阅读顺序、风险判断和验证重点的导读，让人类 reviewer 能快速理解这个 PR 到底在改什么、为什么这么改、哪里最值得盯。
+A Guided Review is a review artifact that turns a pull request diff into a readable map. The reviewer first reads the whole diff, reconstructs the change from end to end, separates the visible and hidden lines of change, and then writes a guided walkthrough that helps humans understand what matters.
 
-它不是把 diff 重新摘要一遍，也不是替代 reviewer 下结论。它的目标是降低理解成本，让后续的代码审查更准、更快、更少漏线。
+It is not a file-by-file summary. It is not a replacement for review judgment. Its job is to reduce comprehension cost so a human reviewer can make a better approve / request-changes / comment-only decision.
 
-## 行业实践压缩版
+## Source-Backed Industry Practices
 
-- Google 的核心标准是 code health：只要 CL 明确改善系统整体健康，就不要为“不完美”无限拖延；reviewer 要看设计、功能、复杂度、测试、命名、注释、风格、文档，并在通常情况下看完每一行。
-- Google 也建议先看变更是否成立，再看最重要的文件，最后按合理顺序读完剩余 diff；如果主设计有问题，先反馈，不要把时间花在会被重写的细节上。
-- Microsoft 的 reviewer guidance 把自动化和人工分工说得很清楚：lint 等自动化覆盖低价值检查，人类重点看业务逻辑正确性、测试正确性、架构和可维护性；读不懂上下文时要打开全文件或 checkout。
-- GitHub 的 PR 指南强调小 PR、清晰标题和描述、作者先自审、给 reviewer 指定阅读顺序、提前看安全风险；Copilot code review 现在可以做非阻塞的建议型初审，但不会替代 required approval。
-- GitLab 把 review 责任分层：author 是方案 DRI，reviewer 看具体方案，maintainer 负责代码库整体健康；复杂 MR 要找 domain expert，并用 checklist 覆盖质量、性能、可靠性、安全、可观测性、文档和部署风险。
-- Meta 的 Sapling/ReviewStack 代表了另一条路线：把大功能拆成可堆叠的小 diff，让每个变化都能独立讨论和批准，避免一个巨大 PR 混在一起读。
-- 2025-2026 的新趋势是 AI 让写代码更快，但 review/integration 变成瓶颈；AI 适合先扫 routine issue、补上下文、生成初稿，人类仍然要负责语义、取舍、风险和最终判断。
+Use these as inputs, not cargo-cult rules. Public guidance differs by company and tool, but the overlap is strong.
 
-## Guided Review 的输出
+- Google frames code review around long-term code health. Reviewers should generally favor approval once a change definitely improves the system, even if it is not perfect. Google also tells reviewers to examine design, functionality, complexity, tests, naming, comments, style, documentation, context, and in the general case every line they were asked to review.
+- Google's navigation advice is: first decide whether the change makes sense, then inspect the main part of the change, then read the rest of the CL in a logical sequence. If the main design is wrong, send that feedback early because the rest may be rewritten.
+- Microsoft's reviewer guidance separates automated checks from human judgment. Linters and formatters can handle low-value checks; humans should focus on business-logic correctness, changed tests, design readability, maintainability, and team-specific error checklists. Microsoft also says reviewers should read every changed line, follow a logical order, and open the full file or check out the change when local context is missing.
+- GitHub's pull request guidance emphasizes small focused PRs, clear titles and descriptions, links to context, reviewer guidance about file order, author self-review, and early security review. GitHub Copilot can generate summaries and review comments, but Copilot code review always leaves a comment review, not an approve or request-changes review, so it does not satisfy required human approvals or block merging by itself.
+- GitLab splits review responsibility by role: reviewers evaluate the specifics of the chosen solution, while maintainers are responsible for the overall health, quality, and consistency of the codebase. GitLab also explicitly calls out domain experts for areas where specialized knowledge matters.
+- Meta's Sapling / ReviewStack work highlights the value of stacked changes: smaller commits are easier to reason about and review, and stack-aware review tools preserve discussion around individual commits instead of forcing the entire PR to be reviewed as one large blob.
+- Recent AI-review practice points in the same direction. Microsoft reported an internal AI code review assistant used on more than 90% of PRs across the company and more than 600K PRs per month, with AI handling routine comments, suggestions, summaries, and Q&A while authors remain in control of accepting changes. Google Cloud describes AI coding as shifting the bottleneck from writing code to reviewing and integrating it, which makes guardrails and human review focus more important.
 
-一份 Guided Review 至少包含这几块：
+## What A Guided Review Produces
 
-1. **一句话主线**：这个 PR 最核心的行为变化是什么。
-2. **阅读路线**：建议 reviewer 按什么文件/commit/模块顺序读，为什么。
-3. **线索地图**：把 diff 拆成明线、暗线和横切线。
-4. **风险焦点**：最可能出问题的路径、边界、迁移点和回滚点。
-5. **验证焦点**：哪些测试/截图/日志/手测证明了主线，哪些还没证明。
-6. **Review 问题清单**：真正需要作者回答的问题，不写低价值风格偏好。
-7. **建议结论**：approve、request changes、comment-only，分别说明 blocker 和非 blocker。
+A useful Guided Review has these parts:
 
-## 线索模型
+1. **One-sentence thesis**: the core behavior or system change in the PR.
+2. **Suggested reading order**: where to start, what to read next, and why.
+3. **Line map**: the visible line, hidden line, and cross-cutting lines of the change.
+4. **Risk focus**: the paths, boundaries, migrations, rollback points, or assumptions that deserve attention.
+5. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
+6. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
+7. **Review recommendation**: approve, request changes, or comment only, with blockers separated from non-blocking follow-up.
 
-### 明线
+## The Line Model
 
-明线是 PR 自己声明出来的主故事。
+### Visible Line
 
-- 用户可见行为：页面、接口、CLI、权限、状态、错误文案发生了什么变化。
-- 需求映射：diff 里的改动分别满足 issue/设计稿/事故复盘里的哪条要求。
-- 正向路径：最常见、最希望发生的执行流是什么。
-- 删除路径：删掉了什么旧行为，为什么可以删。
+The visible line is the PR's declared story.
 
-### 暗线
+- User-facing behavior: pages, APIs, CLI commands, permissions, states, and error messages that changed.
+- Requirement mapping: which issue, design, incident, or product requirement each major change supports.
+- Happy path: the normal path the PR wants to make possible.
+- Removed behavior: what no longer exists and why the removal is safe.
 
-暗线是 diff 没有明说、但 reviewer 必须补出来的约束和假设。
+### Hidden Line
 
-- 隐含不变量：作者默认哪些状态永远存在、哪些字段永远非空、哪些顺序永远成立。
-- 耦合变化：一个模块的小改动是否改变了别的模块的语义。
-- 历史包袱：这段代码原来为什么长这样，这次是否绕过了老约束。
-- 迁移风险：旧数据、旧客户端、旧配置、旧 feature flag 是否还能跑。
-- 运维后果：日志、指标、告警、回滚、灰度、容量是否跟得上。
-- 社会风险：PR 是否把多个争议点绑在一起，导致 reviewer 很难局部批准。
+The hidden line is what the diff assumes but does not explain directly.
 
-### 横切线
+- Invariants: states, fields, ordering, identities, permissions, or timing assumptions that must remain true.
+- Coupling: modules whose semantics changed even if their code barely moved.
+- History: old constraints, past incidents, compatibility requirements, and reasons the code used to look this way.
+- Migration risk: old data, old clients, old configuration, and feature-flag states.
+- Operational effect: logs, metrics, alerts, rollback, capacity, rate limits, and deploy sequencing.
+- Review shape: unrelated changes bundled together, large diffs hiding small decisions, or social pressure to approve too much at once.
 
-横切线是穿过多个文件的工程主题。
+### Cross-Cutting Lines
 
-- 数据线：输入、校验、转换、持久化、输出。
-- 状态线：加载、缓存、刷新、失效、并发、重试。
-- 权限线：身份、授权、租户隔离、审计。
-- 错误线：失败分类、错误传播、用户提示、重试/降级。
-- 测试线：新增测试证明了什么，没证明什么，哪些测试只是锁实现细节。
-- 复杂度线：是否为未来假设引入了当前不需要的抽象。
+Cross-cutting lines run through many files.
 
-## 流程
+- Data line: input, validation, transformation, persistence, output.
+- State line: loading, cache, refresh, invalidation, concurrency, retry.
+- Permission line: identity, authorization, tenant isolation, auditability.
+- Error line: failure classification, propagation, user messaging, retry, fallback.
+- Test line: what the tests prove, what they do not prove, and whether they fail for the right reason.
+- Complexity line: whether the PR adds abstraction for a current need or a speculative future need.
 
-### 0. 先定范围
+## Process
 
-- 读 PR 标题、描述、issue、设计稿、事故链接和 CI 状态。
-- 标出 PR 声称要解决的问题，先不要下结论。
-- 如果描述缺上下文，先把缺口写下来，读 diff 时验证它是否能自己补上。
+### 0. Establish Scope
 
-### 1. 全量盘点 diff
+- Read the PR title, description, linked issue, design notes, incident context, CI status, and review requests.
+- Write down what the PR claims to solve before judging whether the diff actually solves it.
+- If the description lacks context, mark the missing context and see whether the diff or tests fill the gap.
 
-- 列出文件清单：新增、修改、删除、重命名、生成文件、配置、测试、文档。
-- 按职责分组，而不是按工具默认顺序直接读。
-- 找主文件：通常是业务入口、核心 service、schema/migration、状态管理、公共 API。
-- 生成文件、大数据文件可以抽样，但人工写的逻辑不要跳读。
+### 1. Inventory The Diff
 
-### 2. 重建变更图
+- List added, modified, deleted, renamed, generated, config, test, and documentation files.
+- Group files by responsibility instead of trusting the platform's default file order.
+- Identify the main files: entry points, core service logic, schemas, migrations, state management, public APIs, or UI surfaces.
+- Generated files and large static data can be sampled, but human-written logic should not be skipped unless the review scope explicitly excludes it.
 
-把 diff 还原成调用链和数据流：
+### 2. Reconstruct The Change Graph
+
+Turn the diff back into a system flow:
 
 ```text
-入口 -> 校验 -> 核心决策 -> 状态/存储 -> 副作用 -> 输出 -> 测试证明
+entry point -> validation -> core decision -> state/storage -> side effect -> output -> proof
 ```
 
-每条链都问三件事：
+For each flow, answer:
 
-- 这个变化从哪里进入系统？
-- 它改了哪个事实或不变量？
-- 谁会在后面依赖这个新事实？
+- Where does this change enter the system?
+- Which fact, invariant, or contract does it change?
+- Who depends on that new fact later?
 
-### 3. 抽线
+### 3. Extract Lines
 
-先抽明线，再抽暗线，最后抽横切线。
+Extract the visible line first, the hidden line second, and the cross-cutting lines third.
 
-- 明线用用户语言写：这个 PR 让谁能做什么。
-- 暗线用工程约束写：这个 PR 默认什么永远成立。
-- 横切线用 reviewer 关注点写：安全、并发、性能、兼容、可观测、测试、回滚。
+- Write the visible line in product or user language: who can now do what.
+- Write the hidden line in engineering language: what must be true for this to be safe.
+- Write cross-cutting lines in reviewer language: security, concurrency, performance, compatibility, observability, tests, rollback.
 
-不要为了显得完整硬凑线。没有证据的线，标成“未覆盖/需要作者确认”。
+Do not invent lines to make the artifact look complete. If evidence is missing, mark the line as unproven or ask the author.
 
-### 4. 按线回读
+### 4. Re-Read By Line
 
-第二遍读 diff 时，不再逐文件散读，而是沿每条线追到底。
+On the second pass, stop reading file by file. Follow each line to completion.
 
-- 追明线：入口、核心逻辑、UI/API 输出、测试是否闭环。
-- 追暗线：边界条件、旧数据、异常路径、权限、并发是否被处理。
-- 追测试线：测试名、fixture、assertion 是否真的会在主线坏掉时失败。
-- 追删除线：删掉的代码有没有仍被配置、文档、调用方或用户习惯依赖。
+- Follow the visible line through entry point, core logic, output, and tests.
+- Follow the hidden line through edge cases, old data, failure paths, permissions, and concurrency.
+- Follow the test line through test names, fixtures, assertions, and failure mode.
+- Follow the deletion line through callers, configuration, docs, migrations, and user habits.
 
-### 5. 分级风险
+### 5. Classify Risk
 
-把问题分成三档：
+Use three levels:
 
-- **Blocker**：会破坏正确性、安全、数据、兼容、发布、回滚，或主目标根本没实现。
-- **Should fix**：不一定立即出事故，但会明显增加维护成本、测试盲区或误用概率。
-- **Nit / follow-up**：不阻塞合并的局部改善，必须明确标成可选或后续。
+- **Blocker**: correctness, security, data integrity, compatibility, deployability, rollback, or the main requirement is broken.
+- **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, create test gaps, or invite misuse.
+- **Nit / follow-up**: optional polish or separate work that should not block the PR.
 
-Eric way 下，尤其要盯过度防御、未来式抽象、重复运行时类型校验、大组件条件分支、手写 className 拼接、无意义 `useMemo`/`useCallback`、不该存在的 `useEffect`。
+In Eric way reviews, especially watch for over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
 
-### 6. 写 Guided Review
+### 6. Write The Guided Review
 
-推荐格式：
+Use this template:
 
 ```md
 ## Guided Review
 
-### 主线
-一句话说明这个 PR 的核心变化。
+### Thesis
+One sentence describing the core change.
 
-### 建议阅读顺序
-1. `path/to/main`：先看入口和业务意图。
-2. `path/to/core`：再看核心决策和状态变化。
-3. `path/to/tests`：最后看测试是否锁住行为。
+### Suggested Reading Order
+1. `path/to/main`: why this is the entry point.
+2. `path/to/core`: why this contains the main decision.
+3. `path/to/tests`: why this proves or fails to prove the behavior.
 
-### 线索地图
-- 明线：...
-- 数据线：...
-- 状态线：...
-- 边界线：...
-- 测试线：...
-- 暗线：...
+### Line Map
+- Visible line: ...
+- Data line: ...
+- State line: ...
+- Permission line: ...
+- Error line: ...
+- Test line: ...
+- Hidden line: ...
 
-### 关键风险
-- Blocker：...
-- Should fix：...
-- Follow-up：...
+### Key Risks
+- Blocker: ...
+- Should fix: ...
+- Follow-up: ...
 
-### 需要作者确认
+### Questions For The Author
 - ...
 
-### Review 结论
-Approve / Request changes / Comment only：理由。
+### Review Recommendation
+Approve / Request changes / Comment only: reason.
 ```
 
-## 写法要求
+## Accuracy Rules
 
-- 先说判断，再给证据；不要先铺一页背景。
-- 每条风险都绑定文件、函数、行为或测试缺口。
-- 对大 PR 给阅读路线，对小 PR 不硬写长文。
-- 对不确定内容用问题，不用猜测当结论。
-- 对风格和偏好使用 `Nit:` 或 follow-up，不阻塞主线。
-- AI 初稿必须人工复核：它可以帮你列线，但不能替你确认语义正确。
+- Separate source facts from synthesis. If a claim says what a company does, cite the public source.
+- Prefer precise wording over broad wording. For example, say "GitHub Copilot code review does not count toward required approvals" instead of "AI cannot approve PRs" because other tools may differ.
+- Do not claim a company-wide practice from a single blog post unless the post itself says it is company-wide.
+- Do not treat AI output as authoritative. Use AI to draft line maps, summarize routine context, and propose questions; keep humans responsible for semantic correctness, risk judgment, and merge decisions.
+- If the PR is small, keep the Guided Review small. A one-screen review is better than a ceremonial template.
 
-## 反模式
+## Anti-Patterns
 
-- 只复述每个文件改了什么，没有还原系统行为。
-- 没看完 diff 就先抓局部命名和格式。
-- 把自动化能检查的 lint/style 当成人工 review 主体。
-- 把多个 unrelated change 合在一个“主线”里强行解释。
-- 只看新增代码，不看删除代码、配置、测试和文档。
-- 只有问题没有导读，导致下一个 reviewer 还是得从零读。
-- 只有导读没有判断，回避 approve/request changes 的责任。
+- Summarizing each file without reconstructing system behavior.
+- Commenting on naming or formatting before understanding the main design.
+- Spending human review time on checks that automation already handles.
+- Forcing unrelated changes into one fake thesis.
+- Reviewing added code while ignoring deleted code, configuration, tests, and docs.
+- Producing a walkthrough with no judgment.
+- Producing judgment with no reading path, so the next reviewer still starts from zero.
 
 ## Sources
 
