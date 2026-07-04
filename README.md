@@ -13,6 +13,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [TanStack Query](docs/tanstack-query.md)
 - [Review](docs/review.md)
 - [Guided Review](docs/guided-review.md)
+- [Guided Review Example](docs/guided-review-example-openai-node-1949.html)
 
 ## Skills
 
