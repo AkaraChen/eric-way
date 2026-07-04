@@ -21,6 +21,23 @@ run locally.
    should keep their current stack unless replacing it deletes config and
    commands.
 
+## How to fix
+
+1. Gather context before editing: read the failing command, the exact diagnostic,
+   the touched code, and nearby callers or related config.
+2. Reproduce the failure with the smallest command that shows the formatter,
+   lint, type, test, or dependency error.
+3. Find the root cause before changing code. A lint error is usually pointing at
+   design, typing, data flow, naming, or dead-code drift; fix that problem
+   instead of hiding the diagnostic.
+4. Do not add suppressions just to make the check pass. Avoid `eslint-disable`,
+   `#[allow(...)]`, `# type: ignore`, `# noqa`, and similar escapes unless the
+   tool is wrong or the surrounding constraint is real and documented.
+5. If a suppression is the only reasonable fix, keep it narrow, put it on the
+   smallest scope, and explain why the normal fix is not available.
+6. After the fix, rerun the smallest failing check first, then the normal repo
+   gate that would catch the same class of failure in CI.
+
 ## JavaScript and TypeScript
 
 1. Default to TypeScript for application code. Run `tsc --noEmit` or the
