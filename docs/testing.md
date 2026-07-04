@@ -26,8 +26,8 @@ agent-browser close
 1. Use Docker for local or CI isolation when the app under test, browser state, and artifacts should be disposable. Build the image with Node, `agent-browser`, and Chrome/Chromium installed; run `agent-browser install --with-deps` during image setup on Linux when the base image does not already include browser dependencies.
 2. If the app runs on the host and Agent Browser runs in a container, open the host service through `http://host.docker.internal:<port>` on Docker Desktop. On Linux Docker Engine, add the mapping explicitly with `--add-host=host.docker.internal:host-gateway`.
 3. Containerized Chrome often needs launch args when running as root or with small shared memory. Prefer a non-root container user. If that is not practical, pass the minimum flags through `AGENT_BROWSER_ARGS`, commonly `--no-sandbox,--disable-setuid-sandbox,--disable-dev-shm-usage`.
-4. Do not treat Docker as a hard security boundary for untrusted code. For untrusted pages, user-submitted code, or public agent workloads, use a microVM-style sandbox such as Vercel Sandbox with Agent Browser installed in the sandbox image or snapshot.
-5. Cache the browser environment when startup matters. For hosted sandbox runs, use a snapshot that already contains system dependencies, `agent-browser`, and Chromium; for Docker, publish a small internal image instead of installing Chrome on every test job.
+4. Do not treat Docker as a hard security boundary for untrusted code. For untrusted pages, user-submitted code, or public agent workloads, use a stronger isolated runtime with Agent Browser installed in its base image or snapshot.
+5. Cache the browser environment when startup matters. For remote isolated runs, use a snapshot that already contains system dependencies, `agent-browser`, and Chromium; for Docker, publish a small internal image instead of installing Chrome on every test job.
 
 Minimal Docker shape:
 
