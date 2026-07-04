@@ -20,3 +20,5 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
+
+Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies.
