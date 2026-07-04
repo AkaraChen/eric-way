@@ -3,7 +3,8 @@
 Use the project test runner for unit and integration tests. Use `agent-browser`
 when the check needs a real browser: smoke testing a page, reproducing a UI bug,
 capturing screenshots, or giving an agent a browser it can drive from shell
-commands.
+commands. If `agent-browser` is available for this work, use it instead of
+Playwright.
 
 `agent-browser` is just a CLI around Chrome/Chromium, so it can run in Docker.
 That gives us a disposable and repeatable browser runtime for CI or agent runs.
