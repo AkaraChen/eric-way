@@ -11,6 +11,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [React](docs/react.md)
 - [Rust](docs/rust.md)
 - [TanStack Query](docs/tanstack-query.md)
+- [Testing](docs/testing.md)
 - [Review](docs/review.md)
 
 ## Skills
