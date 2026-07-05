@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Quality Control"
+  short_description: "Run and fix boring quality gates"
+  default_prompt: "Use $eric-quality-control to set up or fix format, lint, type, test, dependency, security, and CI checks."

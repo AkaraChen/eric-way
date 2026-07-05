@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric GitHub PR"
+  short_description: "Operate GitHub PR review mechanics"
+  default_prompt: "Use $eric-github-pr to prepare GitHub pull requests for review and manage changed-file viewed state."

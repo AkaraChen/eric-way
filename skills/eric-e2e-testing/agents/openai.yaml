@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric E2E Testing"
+  short_description: "Run browser E2E checks with agent-browser"
+  default_prompt: "Use $eric-e2e-testing when a task needs a real browser, screenshot, smoke test, or browser bug reproduction."

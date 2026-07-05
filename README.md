@@ -26,5 +26,10 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
+- [`eric-writing-tests`](skills/eric-writing-tests/SKILL.md)
+- [`eric-quality-control`](skills/eric-quality-control/SKILL.md)
+- [`eric-e2e-testing`](skills/eric-e2e-testing/SKILL.md)
+- [`eric-guided-review`](skills/eric-guided-review/SKILL.md)
+- [`eric-github-pr`](skills/eric-github-pr/SKILL.md)
 
 Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies. Use repeated `--target <dir>/skills` flags to install into explicit project-local skill directories instead.

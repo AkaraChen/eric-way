@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Guided Review"
+  short_description: "Create structured Guided Review artifacts"
+  default_prompt: "Use $eric-guided-review to turn a pull request diff into a guided review with reading order, line map, risks, and recommendation."

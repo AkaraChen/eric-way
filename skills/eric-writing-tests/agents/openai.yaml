@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Writing Tests"
+  short_description: "Write focused unit and integration tests"
+  default_prompt: "Use $eric-writing-tests to choose and write focused tests in Eric's style."
