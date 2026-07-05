@@ -21,4 +21,4 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
 
-Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies.
+Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies. Use repeated `--target <dir>/skills` flags to install into explicit project-local skill directories instead.
