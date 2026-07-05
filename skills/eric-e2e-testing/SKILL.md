@@ -5,13 +5,13 @@ description: Apply Eric's browser end-to-end testing standards. Use when a task 
 
 # Eric E2E Testing
 
-Use the project test runner for unit and integration tests. Use this skill when the check needs a real browser: smoke testing a page, reproducing a UI bug, capturing screenshots, or giving an agent a browser it can drive from shell commands. If `agent-browser` is available, use it instead of Playwright.
+Use this skill when the check needs a real browser: smoke testing a page, reproducing a UI bug, capturing screenshots, verifying critical flows, or giving an agent a browser it can drive from shell commands. If `agent-browser` is available, use it instead of Playwright.
 
-For unit and integration tests, use `$eric-writing-tests` instead.
+Related: use `$eric-writing-tests` for unit and integration tests.
 
 ## Workflow
 
-1. Decide whether the risk needs a browser. If unit or integration tests prove it, do not add E2E.
+1. Confirm the risk needs browser behavior. If a narrower check already proves it, do not add E2E.
 2. Prefer `agent-browser` for browser smoke checks, screenshots, and agent-driven UI reproduction.
 3. Keep E2E coverage narrow: critical flows, real browser rendering, navigation, authentication handoffs, screenshots, or bugs that only reproduce in Chrome/Chromium.
 4. Save useful artifacts, especially screenshots, under an artifacts directory that CI or the agent can collect.
@@ -71,6 +71,6 @@ docker run --rm \
 
 ## Boundaries
 
-- Do not turn unit or integration risks into E2E tests.
+- Do not use E2E for risks a narrower check can prove.
 - Do not add hosted browser provider assumptions unless the task explicitly needs that provider.
 - Do not leave browser processes running after the check.
