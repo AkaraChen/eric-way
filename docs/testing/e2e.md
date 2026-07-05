@@ -1,4 +1,4 @@
-# Testing
+# Browser End-to-End Testing
 
 Use the project test runner for unit and integration tests. Use `agent-browser`
 when the check needs a real browser: smoke testing a page, reproducing a UI bug,
