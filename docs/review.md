@@ -4,6 +4,10 @@
 2. Next, check for bad practices, such as overuse of defensive programming, unnecessary complexity, and lack of modularity. Make sure the code is easy to read and understand.
 3. If the code already typed, there is no need for checking types at runtime, if the runtime checking is required, the code should be refactored to use types instead of runtime checking.
 
+## GitHub PR Setup
+
+For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before deep review. Start by auto-marking safe test-only files as viewed with GitHub GraphQL so the remaining changed-files view stays focused on production code and review evidence.
+
 ## Frontend
 
 1. Check for `any` type usage in TypeScript. Eric prefers to use specific types and avoid `any` as much as possible.
