@@ -53,7 +53,7 @@ docker run --rm \
   sh -lc 'agent-browser open http://host.docker.internal:3000 && agent-browser close'
 ```
 
-Verified on Docker `linux/aarch64` with `agent-browser 0.31.1` and Debian
-Chromium `149.0.7827.196`: opening `https://example.com`, reading its title,
-writing a screenshot, and opening a host-served page through
-`host.docker.internal` all succeeded.
+Verified in Docker with `agent-browser 0.31.1` and Debian Chromium
+`149.0.7827.196`: opening `https://example.com`, reading its title, writing a
+screenshot, and opening a host-served page through `host.docker.internal` all
+succeeded.
