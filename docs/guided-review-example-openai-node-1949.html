@@ -43,7 +43,7 @@
       }
 
       .page {
-        max-width: 1480px;
+        max-width: 1180px;
         margin: 0 auto;
         padding: 32px 20px 56px;
       }
@@ -128,7 +128,7 @@
 
       main {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr) 380px;
+        grid-template-columns: 220px minmax(0, 1fr);
         gap: 24px;
         margin-top: 28px;
       }
@@ -173,7 +173,7 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
       }
 
@@ -281,23 +281,12 @@
         padding-top: 12px;
       }
 
-      .code-rail {
-        position: sticky;
-        top: 16px;
-        align-self: start;
-        display: grid;
-        gap: 14px;
-      }
-
-      .code-rail h2 {
-        margin-bottom: 0;
-      }
-
       .code-card {
         border: 1px solid var(--line);
         border-radius: 8px;
         background: #111827;
         color: #e5e7eb;
+        margin-top: 12px;
         overflow: hidden;
       }
 
@@ -367,10 +356,6 @@
           padding: 0 0 12px;
         }
 
-        .code-rail {
-          position: static;
-        }
-
         .meta dd {
           text-align: left;
         }
@@ -409,7 +394,6 @@
           <a href="#thesis">Thesis</a>
           <a href="#reading">Reading order</a>
           <a href="#lines">Line map</a>
-          <a href="#code">Key code</a>
           <a href="#risks">Risks</a>
           <a href="#questions">Questions</a>
           <a href="#recommendation">Recommendation</a>
@@ -424,6 +408,20 @@
               sequential behavior when <code>parallel_tool_calls: false</code> or a single function is
               forced.
             </p>
+            <article class="code-card">
+              <header>
+                <h3>Evidence: one branch keeps sequential behavior, the other runs concurrently</h3>
+                <a
+                  href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L435"
+                  >AbstractChatCompletionRunner.ts:410-435</a
+                >
+              </header>
+              <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
+<span class="code-line"><span class="ln">412</span><span class="src">  const result = await runToolCall(toolCall);</span></span>
+<span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
+<span class="code-line"><span class="ln">431</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">433</span><span class="src">  this._addMessage(result.value.message);</span></span></pre>
+            </article>
           </section>
 
           <section id="reading">
@@ -514,6 +512,16 @@
                   When the model returns multiple function tool calls, <code>runTools</code> starts
                   them concurrently by default instead of awaiting each one before starting the next.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421"
+                      >line 421</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span></pre>
+                </article>
               </article>
               <article class="mini">
                 <span class="tag">State line</span>
@@ -522,6 +530,18 @@
                   Concurrent calls can resolve in any order, but the runner adds tool result messages
                   in the original assistant tool-call order before sending the next request.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L429-L433"
+                      >lines 429-433</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">429</span><span class="src">// Promise.allSettled preserves input order...</span></span>
+<span class="code-line"><span class="ln">431</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">433</span><span class="src">  this._addMessage(result.value.message);</span></span></pre>
+                </article>
               </article>
               <article class="mini">
                 <span class="tag">Compatibility line</span>
@@ -530,6 +550,18 @@
                   <code>parallel_tool_calls: false</code> keeps tool execution sequential. A forced
                   single function still returns after the first successful function call.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L417"
+                      >lines 410-417</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
+<span class="code-line"><span class="ln">412</span><span class="src">  const result = await runToolCall(toolCall);</span></span>
+<span class="code-line"><span class="ln">415</span><span class="src">  if (singleFunctionToCall &amp;&amp; result.functionCalled) {</span></span></pre>
+                </article>
               </article>
               <article class="mini">
                 <span class="tag warn">Hidden line</span>
@@ -539,6 +571,18 @@
                   error, reducing the chance that unresolved tool side effects continue after the
                   runner has already failed.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421-L426"
+                      >lines 421-426</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(...);</span></span>
+<span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span></pre>
+                </article>
               </article>
               <article class="mini">
                 <span class="tag">Test line</span>
@@ -547,6 +591,19 @@
                   The new regression test starts two tools, resolves the second first, and asserts
                   that final tool messages still arrive as first-call then second-call.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L746-L773"
+                      >test lines 746-773</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">746</span><span class="src">expect(request.messages.slice(-2)).toEqual([</span></span>
+<span class="code-line"><span class="ln">768</span><span class="src">resolveSecond('second result');</span></span>
+<span class="code-line"><span class="ln">770</span><span class="src">resolveFirst('first result');</span></span>
+<span class="code-line"><span class="ln">773</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool', 'secondTool']);</span></span></pre>
+                </article>
               </article>
               <article class="mini">
                 <span class="tag">Docs line</span>
@@ -555,6 +612,18 @@
                   <code>helpers.md</code> now explains default concurrent execution, ordered result
                   delivery, and the <code>parallel_tool_calls: false</code> escape hatch.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
+                      >helpers.md:317-319</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">317</span><span class="src">runTools executes them concurrently by default</span></span>
+<span class="code-line"><span class="ln">318</span><span class="src">and sends their results back in the same order as the tool calls.</span></span>
+<span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false...</span></span></pre>
+                </article>
               </article>
             </div>
           </section>
@@ -569,6 +638,22 @@
                   streaming adapters call that path, and tests cover the highest-risk observable
                   behavior: concurrent start plus ordered result submission.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence: both adapters call the same shared path</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionRunner.ts#L35-L41"
+                      >non-streaming lines 35-41</a
+                    >
+                    /
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionStreamingRunner.ts#L39-L48"
+                      >streaming lines 39-48</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">40</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span>
+<span class="code-line"><span class="ln">47</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span></pre>
+                </article>
               </div>
               <div class="risk-row">
                 <strong><span class="tag warn">Should verify</span></strong>
@@ -578,6 +663,18 @@
                   shown diff does not include a direct regression test where one tool rejects while
                   another is still pending.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence: implementation exists, direct rejection test is the gap</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421-L426"
+                      >AbstractChatCompletionRunner.ts:421-426</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
+<span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span></pre>
+                </article>
               </div>
               <div class="risk-row">
                 <strong><span class="tag warn">Residual risk</span></strong>
@@ -586,6 +683,17 @@
                   on implicit serial side effects without setting <code>parallel_tool_calls: false</code>,
                   behavior can change even though message ordering is preserved.
                 </p>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence: serial timing is now opt-in</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
+                      >helpers.md:317-319</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">317</span><span class="src">runTools executes them concurrently by default</span></span>
+<span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false to request one tool call at a time.</span></span></pre>
+                </article>
               </div>
               <div class="risk-row">
                 <strong><span class="tag">Follow-up</span></strong>
@@ -645,110 +753,6 @@
             </p>
           </section>
         </div>
-
-        <aside class="code-rail" id="code" aria-label="Key code excerpts">
-          <h2>Key Code</h2>
-          <article class="code-card">
-            <header>
-              <h3>Shared tool-call executor</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L347-L388"
-                >AbstractChatCompletionRunner.ts:347-388</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">347</span><span class="src">const runToolCall = async (...): Promise&lt;ToolCallResult&gt; =&gt; {</span></span>
-<span class="code-line"><span class="ln">372</span><span class="src">  let rawContent: unknown;</span></span>
-<span class="code-line"><span class="ln">381</span><span class="src">  rawContent = await fn.function(parsed, runner);</span></span>
-<span class="code-line"><span class="ln">386</span><span class="src">  const content = this.#stringifyFunctionCallResult(rawContent);</span></span>
-<span class="code-line"><span class="ln">387</span><span class="src">  return { message: { role, tool_call_id, content }, functionCalled: true };</span></span>
-<span class="code-line"><span class="ln">388</span><span class="src">};</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>Sequential escape hatch</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L419"
-                >AbstractChatCompletionRunner.ts:410-419</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
-<span class="code-line"><span class="ln">411</span><span class="src">  for (const toolCall of message.tool_calls) {</span></span>
-<span class="code-line"><span class="ln">412</span><span class="src">    const result = await runToolCall(toolCall);</span></span>
-<span class="code-line"><span class="ln">413</span><span class="src">    if (result.message) this._addMessage(result.message);</span></span>
-<span class="code-line"><span class="ln">415</span><span class="src">    if (singleFunctionToCall &amp;&amp; result.functionCalled) {</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>Concurrent path, ordered output</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421-L435"
-                >AbstractChatCompletionRunner.ts:421-435</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
-<span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
-<span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span>
-<span class="code-line"><span class="ln">431</span><span class="src">for (const result of results) {</span></span>
-<span class="code-line"><span class="ln">433</span><span class="src">  this._addMessage(result.value.message);</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>Concrete runner passed through</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionRunner.ts#L35-L41"
-                >ChatCompletionRunner.ts:35-41</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">35</span><span class="src">const runner = new ChatCompletionRunner&lt;ParsedT&gt;();</span></span>
-<span class="code-line"><span class="ln">40</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>Order regression test</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L742-L773"
-                >ChatCompletionRunFunctions.test.ts:742-773</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">742</span><span class="src">await firstStarted;</span></span>
-<span class="code-line"><span class="ln">746</span><span class="src">expect(request.messages.slice(-2)).toEqual([</span></span>
-<span class="code-line"><span class="ln">768</span><span class="src">resolveSecond('second result');</span></span>
-<span class="code-line"><span class="ln">770</span><span class="src">resolveFirst('first result');</span></span>
-<span class="code-line"><span class="ln">773</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool', 'secondTool']);</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>Sequential-mode test</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L789-L869"
-                >ChatCompletionRunFunctions.test.ts:789-869</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">793</span><span class="src">parallel_tool_calls: false,</span></span>
-<span class="code-line"><span class="ln">859</span><span class="src">await firstStarted;</span></span>
-<span class="code-line"><span class="ln">861</span><span class="src">resolveFirst('first result');</span></span>
-<span class="code-line"><span class="ln">863</span><span class="src">await secondStarted;</span></span>
-<span class="code-line"><span class="ln">868</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool']);</span></span></pre>
-          </article>
-
-          <article class="code-card">
-            <header>
-              <h3>User-facing docs</h3>
-              <a
-                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
-                >helpers.md:317-319</a
-              >
-            </header>
-            <pre><span class="code-line"><span class="ln">317</span><span class="src">When a completion requests multiple tool calls, runTools executes them concurrently by default</span></span>
-<span class="code-line"><span class="ln">318</span><span class="src">and sends their results back in the same order as the tool calls.</span></span>
-<span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false to request one tool call at a time.</span></span></pre>
-          </article>
-        </aside>
       </main>
     </div>
   </body>
