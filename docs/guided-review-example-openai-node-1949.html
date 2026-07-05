@@ -42,6 +42,11 @@
         color: var(--accent-strong);
       }
 
+      .hamburger,
+      .drawer-scrim {
+        display: none;
+      }
+
       .page {
         max-width: 1180px;
         margin: 0 auto;
@@ -173,14 +178,14 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
 
       .mini {
         border: 1px solid var(--line);
         border-radius: 8px;
-        padding: 14px;
+        padding: 16px;
         background: #fbfcfe;
       }
 
@@ -191,6 +196,12 @@
 
       .mini p,
       li {
+        color: var(--muted);
+      }
+
+      .mini > p,
+      .risk-row > p {
+        margin-top: 10px;
         color: var(--muted);
       }
 
@@ -275,8 +286,8 @@
 
       .risk-row {
         display: grid;
-        grid-template-columns: 140px minmax(0, 1fr);
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 10px;
         border-top: 1px solid var(--line);
         padding-top: 12px;
       }
@@ -343,17 +354,88 @@
 
       @media (max-width: 860px) {
         header,
-        main,
-        .grid,
-        .risk-row {
+        main {
           grid-template-columns: 1fr;
         }
 
+        body {
+          background: #f8fafc;
+        }
+
+        .page {
+          padding-top: 76px;
+        }
+
+        .hamburger {
+          position: fixed;
+          top: 16px;
+          left: 16px;
+          z-index: 35;
+          display: inline-flex;
+          width: 44px;
+          height: 44px;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          border: 1px solid var(--line);
+          border-radius: 8px;
+          background: var(--panel);
+          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+          cursor: pointer;
+        }
+
+        .hamburger span {
+          display: block;
+          width: 18px;
+          height: 2px;
+          margin: 0 auto;
+          border-radius: 999px;
+          background: var(--ink);
+        }
+
+        .drawer-scrim {
+          position: fixed;
+          inset: 0;
+          z-index: 20;
+          border: 0;
+          background: rgba(15, 23, 42, 0.35);
+          padding: 0;
+        }
+
+        body.drawer-open .drawer-scrim {
+          display: block;
+        }
+
+        main {
+          display: block;
+        }
+
         nav {
-          position: static;
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 30;
+          width: min(82vw, 320px);
           border-left: 0;
-          border-bottom: 1px solid var(--line);
-          padding: 0 0 12px;
+          border-right: 1px solid var(--line);
+          border-bottom: 0;
+          background: var(--panel);
+          padding: 76px 22px 22px;
+          transform: translateX(-105%);
+          transition: transform 160ms ease;
+          visibility: hidden;
+          box-shadow: 18px 0 42px rgba(15, 23, 42, 0.2);
+        }
+
+        body.drawer-open nav {
+          transform: translateX(0);
+          visibility: visible;
+        }
+
+        nav a {
+          padding: 12px 0;
+          font-size: 16px;
         }
 
         .meta dd {
@@ -363,6 +445,18 @@
     </style>
   </head>
   <body>
+    <button
+      class="hamburger"
+      type="button"
+      aria-controls="report-nav"
+      aria-expanded="false"
+      aria-label="Open report menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <button class="drawer-scrim" type="button" aria-label="Close report menu"></button>
     <div class="page">
       <header>
         <div>
@@ -390,10 +484,10 @@
       </header>
 
       <main>
-        <nav aria-label="Report sections">
+        <nav id="report-nav" aria-label="Report sections">
           <a href="#thesis">Thesis</a>
           <a href="#reading">Reading order</a>
-          <a href="#lines">Line map</a>
+          <a href="#lines">Evidence</a>
           <a href="#risks">Risks</a>
           <a href="#questions">Questions</a>
           <a href="#recommendation">Recommendation</a>
@@ -503,33 +597,28 @@
           </section>
 
           <section id="lines">
-            <h2>Line Map</h2>
+            <h2>Evidence Walkthrough</h2>
             <div class="grid">
               <article class="mini">
                 <span class="tag ok">Visible line</span>
                 <h3>Faster grouped tool calls</h3>
-                <p>
-                  When the model returns multiple function tool calls, <code>runTools</code> starts
-                  them concurrently by default instead of awaiting each one before starting the next.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
                     <a
-                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421"
-                      >line 421</a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L421"
+                      >lines 410-421</a
                     >
                   </header>
-                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span></pre>
+                  <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
+<span class="code-line"><span class="ln">412</span><span class="src">  const result = await runToolCall(toolCall);</span></span>
+<span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span></pre>
                 </article>
+                <p>Multiple returned tool calls now start together unless the sequential branch applies.</p>
               </article>
               <article class="mini">
                 <span class="tag">State line</span>
                 <h3>Order is still deterministic</h3>
-                <p>
-                  Concurrent calls can resolve in any order, but the runner adds tool result messages
-                  in the original assistant tool-call order before sending the next request.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
@@ -542,14 +631,11 @@
 <span class="code-line"><span class="ln">431</span><span class="src">for (const result of results) {</span></span>
 <span class="code-line"><span class="ln">433</span><span class="src">  this._addMessage(result.value.message);</span></span></pre>
                 </article>
+                <p>Result messages are added in the original tool-call order, not completion order.</p>
               </article>
               <article class="mini">
                 <span class="tag">Compatibility line</span>
                 <h3>Sequential mode remains available</h3>
-                <p>
-                  <code>parallel_tool_calls: false</code> keeps tool execution sequential. A forced
-                  single function still returns after the first successful function call.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
@@ -562,15 +648,11 @@
 <span class="code-line"><span class="ln">412</span><span class="src">  const result = await runToolCall(toolCall);</span></span>
 <span class="code-line"><span class="ln">415</span><span class="src">  if (singleFunctionToCall &amp;&amp; result.functionCalled) {</span></span></pre>
                 </article>
+                <p><code>parallel_tool_calls: false</code> and forced single-function calls keep serial behavior.</p>
               </article>
               <article class="mini">
                 <span class="tag warn">Hidden line</span>
                 <h3>Side effects must settle before error exit</h3>
-                <p>
-                  The concurrent path uses <code>Promise.allSettled</code> before throwing a tool
-                  error, reducing the chance that unresolved tool side effects continue after the
-                  runner has already failed.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
@@ -579,18 +661,15 @@
                       >lines 421-426</a
                     >
                   </header>
-                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(...);</span></span>
+                  <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
 <span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
 <span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span></pre>
                 </article>
+                <p>Errors are surfaced only after every started tool call has settled.</p>
               </article>
               <article class="mini">
                 <span class="tag">Test line</span>
                 <h3>Concurrency and ordering are directly tested</h3>
-                <p>
-                  The new regression test starts two tools, resolves the second first, and asserts
-                  that final tool messages still arrive as first-call then second-call.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
@@ -604,14 +683,11 @@
 <span class="code-line"><span class="ln">770</span><span class="src">resolveFirst('first result');</span></span>
 <span class="code-line"><span class="ln">773</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool', 'secondTool']);</span></span></pre>
                 </article>
+                <p>The test resolves tools out of order while asserting concurrent start and stable final order.</p>
               </article>
               <article class="mini">
                 <span class="tag">Docs line</span>
                 <h3>Behavior is documented for users</h3>
-                <p>
-                  <code>helpers.md</code> now explains default concurrent execution, ordered result
-                  delivery, and the <code>parallel_tool_calls: false</code> escape hatch.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence</h3>
@@ -624,6 +700,7 @@
 <span class="code-line"><span class="ln">318</span><span class="src">and sends their results back in the same order as the tool calls.</span></span>
 <span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false...</span></span></pre>
                 </article>
+                <p>The public docs describe both the new default and the opt-out.</p>
               </article>
             </div>
           </section>
@@ -633,11 +710,6 @@
             <div class="risk-table">
               <div class="risk-row">
                 <strong><span class="tag ok">No blocker found</span></strong>
-                <p>
-                  The main behavior is implemented in one shared runner path, both non-streaming and
-                  streaming adapters call that path, and tests cover the highest-risk observable
-                  behavior: concurrent start plus ordered result submission.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence: both adapters call the same shared path</h3>
@@ -654,15 +726,13 @@
                   <pre><span class="code-line"><span class="ln">40</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span>
 <span class="code-line"><span class="ln">47</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span></pre>
                 </article>
+                <p>
+                  The shared path plus tests cover the highest-risk observable behavior: concurrent
+                  start and ordered result submission.
+                </p>
               </div>
               <div class="risk-row">
                 <strong><span class="tag warn">Should verify</span></strong>
-                <p>
-                  The PR body calls out waiting for all concurrent calls to settle before surfacing an
-                  error. The implementation does this with <code>Promise.allSettled</code>, but the
-                  shown diff does not include a direct regression test where one tool rejects while
-                  another is still pending.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence: implementation exists, direct rejection test is the gap</h3>
@@ -675,14 +745,13 @@
 <span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
 <span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span></pre>
                 </article>
+                <p>
+                  The implementation waits, but the diff does not show a direct regression test for a
+                  rejected tool while another tool is still pending.
+                </p>
               </div>
               <div class="risk-row">
                 <strong><span class="tag warn">Residual risk</span></strong>
-                <p>
-                  Concurrency changes the timing of user-provided tool functions. If callers relied
-                  on implicit serial side effects without setting <code>parallel_tool_calls: false</code>,
-                  behavior can change even though message ordering is preserved.
-                </p>
                 <article class="code-card">
                   <header>
                     <h3>Evidence: serial timing is now opt-in</h3>
@@ -694,13 +763,25 @@
                   <pre><span class="code-line"><span class="ln">317</span><span class="src">runTools executes them concurrently by default</span></span>
 <span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false to request one tool call at a time.</span></span></pre>
                 </article>
+                <p>Callers relying on implicit serial side effects need the explicit opt-out.</p>
               </div>
               <div class="risk-row">
                 <strong><span class="tag">Follow-up</span></strong>
+                <article class="code-card">
+                  <header>
+                    <h3>Existing test pattern to extend</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L746-L773"
+                      >test lines 746-773</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">746</span><span class="src">expect(request.messages.slice(-2)).toEqual([</span></span>
+<span class="code-line"><span class="ln">768</span><span class="src">resolveSecond('second result');</span></span>
+<span class="code-line"><span class="ln">770</span><span class="src">resolveFirst('first result');</span></span>
+<span class="code-line"><span class="ln">773</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool', 'secondTool']);</span></span></pre>
+                </article>
                 <p>
-                  A small rejection-order test would make the hidden line explicit: start two tools,
-                  reject one, keep the other pending briefly, and assert the runner waits before
-                  exposing the failure.
+                  Extend this pattern with one rejection case to prove the hidden safety line.
                 </p>
               </div>
             </div>
@@ -755,5 +836,31 @@
         </div>
       </main>
     </div>
+    <script>
+      const menuButton = document.querySelector(".hamburger");
+      const drawerScrim = document.querySelector(".drawer-scrim");
+      const setMenuOpen = (isOpen) => {
+        document.body.classList.toggle("drawer-open", isOpen);
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      };
+
+      menuButton.addEventListener("click", () => {
+        setMenuOpen(!document.body.classList.contains("drawer-open"));
+      });
+
+      drawerScrim.addEventListener("click", () => {
+        setMenuOpen(false);
+      });
+
+      document.querySelectorAll("#report-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          setMenuOpen(false);
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setMenuOpen(false);
+      });
+    </script>
   </body>
 </html>
