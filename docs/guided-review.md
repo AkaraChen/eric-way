@@ -4,7 +4,7 @@ A Guided Review is a review artifact that turns a pull request diff into a reada
 
 It is not a file-by-file summary. It is not a replacement for review judgment. Its job is to reduce comprehension cost so a human reviewer can make a better approve / request-changes / comment-only decision.
 
-## Source-Backed Industry Practices
+## Industry Practices
 
 Use these as inputs, not cargo-cult rules. Public guidance differs by company and tool, but the overlap is strong.
 
@@ -74,7 +74,6 @@ Cross-cutting lines run through many files.
 - List added, modified, deleted, renamed, generated, config, test, and documentation files.
 - Group files by responsibility instead of trusting the platform's default file order.
 - Identify the main files: entry points, core service logic, schemas, migrations, state management, public APIs, or UI surfaces.
-- On GitHub PRs, prepare the changed-files view with [GitHub PR Review Operations](gh-pr.md): after reading enough to understand the test line, mark safe test-only files as viewed so the remaining diff stays focused.
 - Generated files and large static data can be sampled, but human-written logic should not be skipped unless the review scope explicitly excludes it.
 
 ### 2. Reconstruct The Change Graph
@@ -158,7 +157,7 @@ Approve / Request changes / Comment only: reason.
 
 ## Accuracy Rules
 
-- Separate source facts from synthesis. If a claim says what a company does, cite the public source.
+- Separate observed facts from synthesis. If a claim says what a company does, keep it precise and verifiable.
 - Prefer precise wording over broad wording. For example, say "GitHub Copilot code review does not count toward required approvals" instead of "AI cannot approve PRs" because other tools may differ.
 - Do not claim a company-wide practice from a single blog post unless the post itself says it is company-wide.
 - Do not treat AI output as authoritative. Use AI to draft line maps, summarize routine context, and propose questions; keep humans responsible for semantic correctness, risk judgment, and merge decisions.
@@ -173,17 +172,3 @@ Approve / Request changes / Comment only: reason.
 - Reviewing added code while ignoring deleted code, configuration, tests, and docs.
 - Producing a walkthrough with no judgment.
 - Producing judgment with no reading path, so the next reviewer still starts from zero.
-
-## Sources
-
-- [Google Engineering Practices: The Standard of Code Review](https://google.github.io/eng-practices/review/reviewer/standard.html)
-- [Google Engineering Practices: What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
-- [Google Engineering Practices: Navigating a CL in review](https://google.github.io/eng-practices/review/reviewer/navigate.html)
-- [Google Research: Modern Code Review, a Case Study at Google](https://research.google/pubs/modern-code-review-a-case-study-at-google/)
-- [Microsoft Engineering Fundamentals: Reviewer Guidance](https://microsoft.github.io/code-with-engineering-playbook/code-reviews/process-guidance/reviewer-guidance/)
-- [Microsoft Engineering: Enhancing Code Quality at Scale with AI-Powered Code Reviews](https://devblogs.microsoft.com/engineering-at-microsoft/enhancing-code-quality-at-scale-with-ai-powered-code-reviews/)
-- [GitHub Docs: Helping others review your changes](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/helping-others-review-your-changes)
-- [GitHub Docs: Using GitHub Copilot code review](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review)
-- [GitLab Docs: Code Review Guidelines](https://docs.gitlab.com/development/code_review/)
-- [Meta Engineering: Sapling source control](https://engineering.fb.com/2022/11/15/open-source/sapling-source-control-scalable/)
-- [Google Cloud: When AI writes the code, who reviews it?](https://cloud.google.com/transform/when-ai-writes-the-code-who-reviews-it-cto-google-cloud)
