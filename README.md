@@ -8,6 +8,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [Desktop](docs/desktop.md)
 - [Frontend](docs/frontend.md)
 - [JavaScript](docs/javascript.md)
+- [Project Creation](docs/project-creation.md)
 - [Quality Control](docs/quality-control.md)
 - [React](docs/react.md)
 - [Rust](docs/rust.md)
