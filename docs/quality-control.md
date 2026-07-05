@@ -12,12 +12,14 @@ run locally.
    same commands developers run locally.
 3. Every PR should at least run format check, lint, type check or compile check,
    and focused tests for touched behavior.
-4. Auto-fix formatter output and safe lint fixes. Review unsafe lint fixes,
+4. Before adding or changing tests, decide whether each test is a regression
+   lock, a correctness check, or both. See [Writing tests](testing/writing-test.md).
+5. Auto-fix formatter output and safe lint fixes. Review unsafe lint fixes,
    dependency upgrades, and generated-code changes like normal code.
-5. Add slower gates only for real risk: end-to-end tests for critical flows,
+6. Add slower gates only for real risk: end-to-end tests for critical flows,
    dependency audits for shipped services, dead-code checks before cleanup work,
    and security linters around auth, crypto, file, process, or network input.
-6. New projects should choose one tool per responsibility. Existing projects
+7. New projects should choose one tool per responsibility. Existing projects
    should keep their current stack unless replacing it deletes config and
    commands.
 
