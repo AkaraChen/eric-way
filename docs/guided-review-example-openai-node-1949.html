@@ -43,7 +43,7 @@
       }
 
       .page {
-        max-width: 1160px;
+        max-width: 1480px;
         margin: 0 auto;
         padding: 32px 20px 56px;
       }
@@ -128,8 +128,8 @@
 
       main {
         display: grid;
-        grid-template-columns: 240px minmax(0, 1fr);
-        gap: 28px;
+        grid-template-columns: 220px minmax(0, 1fr) 380px;
+        gap: 24px;
         margin-top: 28px;
       }
 
@@ -177,10 +177,6 @@
         gap: 14px;
       }
 
-      .two {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .mini {
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -225,11 +221,6 @@
         color: var(--warn);
       }
 
-      .tag.risk {
-        background: #fee2e2;
-        color: var(--risk);
-      }
-
       .tag.ok {
         background: #dcfce7;
         color: var(--ok);
@@ -262,6 +253,12 @@
         font-weight: 750;
       }
 
+      .line-link {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
       code {
         border-radius: 5px;
         background: var(--code);
@@ -284,6 +281,72 @@
         padding-top: 12px;
       }
 
+      .code-rail {
+        position: sticky;
+        top: 16px;
+        align-self: start;
+        display: grid;
+        gap: 14px;
+      }
+
+      .code-rail h2 {
+        margin-bottom: 0;
+      }
+
+      .code-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #111827;
+        color: #e5e7eb;
+        overflow: hidden;
+      }
+
+      .code-card header {
+        display: block;
+        border-bottom: 1px solid #263244;
+        padding: 12px 14px;
+      }
+
+      .code-card h3 {
+        margin: 0 0 6px;
+        color: #f8fafc;
+        font-size: 14px;
+      }
+
+      .code-card a {
+        color: #67e8f9;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .code-card pre {
+        margin: 0;
+        overflow-x: auto;
+        padding: 12px 0;
+        font:
+          12px/1.5 "SFMono-Regular",
+          Consolas,
+          "Liberation Mono",
+          monospace;
+      }
+
+      .code-line {
+        display: grid;
+        grid-template-columns: 46px minmax(max-content, 1fr);
+        gap: 10px;
+        padding: 0 14px;
+      }
+
+      .ln {
+        color: #94a3b8;
+        text-align: right;
+        user-select: none;
+      }
+
+      .src {
+        white-space: pre;
+      }
+
       .footer-note {
         color: var(--muted);
         font-size: 14px;
@@ -293,7 +356,6 @@
         header,
         main,
         .grid,
-        .two,
         .risk-row {
           grid-template-columns: 1fr;
         }
@@ -303,6 +365,10 @@
           border-left: 0;
           border-bottom: 1px solid var(--line);
           padding: 0 0 12px;
+        }
+
+        .code-rail {
+          position: static;
         }
 
         .meta dd {
@@ -343,6 +409,7 @@
           <a href="#thesis">Thesis</a>
           <a href="#reading">Reading order</a>
           <a href="#lines">Line map</a>
+          <a href="#code">Key code</a>
           <a href="#risks">Risks</a>
           <a href="#questions">Questions</a>
           <a href="#recommendation">Recommendation</a>
@@ -370,6 +437,12 @@
                     branch, the concurrent <code>Promise.allSettled</code> branch, ordered message
                     insertion, and error surfacing.
                   </p>
+                  <p class="line-link">
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L347-L435"
+                      >View lines 347-435</a
+                    >
+                  </p>
                 </div>
               </div>
               <div class="reading-item">
@@ -378,6 +451,17 @@
                   <p>
                     These files show the thin adapter change: both runner types now pass the concrete
                     runner into shared tool execution so callbacks receive the expected runner object.
+                  </p>
+                  <p class="line-link">
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionRunner.ts#L35-L41"
+                      >Non-streaming lines 35-41</a
+                    >
+                    /
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionStreamingRunner.ts#L39-L48"
+                      >streaming lines 39-48</a
+                    >
                   </p>
                 </div>
               </div>
@@ -389,6 +473,17 @@
                     result ordering, and sequential execution when <code>parallel_tool_calls</code> is
                     false.
                   </p>
+                  <p class="line-link">
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L665-L773"
+                      >Concurrency test lines 665-773</a
+                    >
+                    /
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L775-L869"
+                      >sequential test lines 775-869</a
+                    >
+                  </p>
                 </div>
               </div>
               <div class="reading-item">
@@ -397,6 +492,12 @@
                   <p>
                     Finish with docs. The public helper documentation now states the default
                     concurrency behavior and the sequential opt-out.
+                  </p>
+                  <p class="line-link">
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
+                      >View lines 317-319</a
+                    >
                   </p>
                 </div>
               </div>
@@ -544,6 +645,110 @@
             </p>
           </section>
         </div>
+
+        <aside class="code-rail" id="code" aria-label="Key code excerpts">
+          <h2>Key Code</h2>
+          <article class="code-card">
+            <header>
+              <h3>Shared tool-call executor</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L347-L388"
+                >AbstractChatCompletionRunner.ts:347-388</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">347</span><span class="src">const runToolCall = async (...): Promise&lt;ToolCallResult&gt; =&gt; {</span></span>
+<span class="code-line"><span class="ln">372</span><span class="src">  let rawContent: unknown;</span></span>
+<span class="code-line"><span class="ln">381</span><span class="src">  rawContent = await fn.function(parsed, runner);</span></span>
+<span class="code-line"><span class="ln">386</span><span class="src">  const content = this.#stringifyFunctionCallResult(rawContent);</span></span>
+<span class="code-line"><span class="ln">387</span><span class="src">  return { message: { role, tool_call_id, content }, functionCalled: true };</span></span>
+<span class="code-line"><span class="ln">388</span><span class="src">};</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>Sequential escape hatch</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L419"
+                >AbstractChatCompletionRunner.ts:410-419</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
+<span class="code-line"><span class="ln">411</span><span class="src">  for (const toolCall of message.tool_calls) {</span></span>
+<span class="code-line"><span class="ln">412</span><span class="src">    const result = await runToolCall(toolCall);</span></span>
+<span class="code-line"><span class="ln">413</span><span class="src">    if (result.message) this._addMessage(result.message);</span></span>
+<span class="code-line"><span class="ln">415</span><span class="src">    if (singleFunctionToCall &amp;&amp; result.functionCalled) {</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>Concurrent path, ordered output</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L421-L435"
+                >AbstractChatCompletionRunner.ts:421-435</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
+<span class="code-line"><span class="ln">425</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">426</span><span class="src">  if (result.status === 'rejected') throw result.reason;</span></span>
+<span class="code-line"><span class="ln">431</span><span class="src">for (const result of results) {</span></span>
+<span class="code-line"><span class="ln">433</span><span class="src">  this._addMessage(result.value.message);</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>Concrete runner passed through</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/ChatCompletionRunner.ts#L35-L41"
+                >ChatCompletionRunner.ts:35-41</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">35</span><span class="src">const runner = new ChatCompletionRunner&lt;ParsedT&gt;();</span></span>
+<span class="code-line"><span class="ln">40</span><span class="src">runner._run(() =&gt; runner._runTools(client, params, runner, opts));</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>Order regression test</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L742-L773"
+                >ChatCompletionRunFunctions.test.ts:742-773</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">742</span><span class="src">await firstStarted;</span></span>
+<span class="code-line"><span class="ln">746</span><span class="src">expect(request.messages.slice(-2)).toEqual([</span></span>
+<span class="code-line"><span class="ln">768</span><span class="src">resolveSecond('second result');</span></span>
+<span class="code-line"><span class="ln">770</span><span class="src">resolveFirst('first result');</span></span>
+<span class="code-line"><span class="ln">773</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool', 'secondTool']);</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>Sequential-mode test</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/tests/lib/ChatCompletionRunFunctions.test.ts#L789-L869"
+                >ChatCompletionRunFunctions.test.ts:789-869</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">793</span><span class="src">parallel_tool_calls: false,</span></span>
+<span class="code-line"><span class="ln">859</span><span class="src">await firstStarted;</span></span>
+<span class="code-line"><span class="ln">861</span><span class="src">resolveFirst('first result');</span></span>
+<span class="code-line"><span class="ln">863</span><span class="src">await secondStarted;</span></span>
+<span class="code-line"><span class="ln">868</span><span class="src">expect(startedBeforeFirstResolved).toEqual(['firstTool']);</span></span></pre>
+          </article>
+
+          <article class="code-card">
+            <header>
+              <h3>User-facing docs</h3>
+              <a
+                href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
+                >helpers.md:317-319</a
+              >
+            </header>
+            <pre><span class="code-line"><span class="ln">317</span><span class="src">When a completion requests multiple tool calls, runTools executes them concurrently by default</span></span>
+<span class="code-line"><span class="ln">318</span><span class="src">and sends their results back in the same order as the tool calls.</span></span>
+<span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false to request one tool call at a time.</span></span></pre>
+          </article>
+        </aside>
       </main>
     </div>
   </body>
