@@ -1,6 +1,6 @@
 ---
 name: eric-frontend
-description: Apply Eric's frontend coding standards. Use when implementing, refactoring, or reviewing frontend web/app UI code, React components, TanStack Query usage, feature-folder organization, styling boundaries, app-vs-website UI decisions, frontend state, or frontend tests in Eric's style.
+description: Apply Eric's frontend coding standards. Use when implementing, refactoring, or reviewing frontend web/app UI code, TanStack Query usage, feature-folder organization, styling boundaries, app-vs-website UI decisions, frontend state, or frontend tests in Eric's style. For React-specific components, hooks, providers, memoization, effects, or local reducer work, also use $eric-react.
 ---
 
 # Eric Frontend
@@ -12,7 +12,7 @@ Use this skill for frontend implementation or frontend review. Keep the codebase
 1. Inspect the existing frontend stack, folder layout, component system, styling setup, data-fetching layer, and test runner before changing code.
 2. For JavaScript, TypeScript, Node, package-manager, install, or script-runner work, also use `$eric-javascript`.
 3. For TanStack Query, request files, query keys, mutation options, or invalidation work, also read `references/tanstack-query.md`.
-4. If the task is React-specific, also use the repository's React conventions; do not add memoization or effects by default.
+4. If the task is React-specific, also use `$eric-react`.
 5. Keep changes local to the feature, shared primitive, request file, or store that already owns the behavior.
 6. Leave one focused check when logic changes: a narrow test, typecheck, lint, or the smallest runnable verification the repo supports.
 

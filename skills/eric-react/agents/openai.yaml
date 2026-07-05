@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric React"
+  short_description: "Apply Eric's React component rules"
+  default_prompt: "Use $eric-react to implement or review React components in Eric's style."

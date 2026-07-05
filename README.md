@@ -16,6 +16,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 ## Skills
 
 - [`eric-frontend`](skills/eric-frontend/SKILL.md)
+- [`eric-react`](skills/eric-react/SKILL.md)
 - [`eric-javascript`](skills/eric-javascript/SKILL.md)
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)

@@ -5,12 +5,12 @@ description: Review code using Eric's standards. Use when the user asks for revi
 
 # Eric Review
 
-Use this skill for review tasks. Start from concrete findings, not a broad summary. Also check the relevant Eric skill for the code under review: `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
+Use this skill for review tasks. Start from concrete findings, not a broad summary. Also check the relevant Eric skill for the code under review: `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
 
 ## Workflow
 
 1. Inspect the actual diff or files under review before judging.
-2. Read `$eric-frontend`, `$eric-backend`, or `$eric-desktop` when the diff touches that stack.
+2. Read `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop` when the diff touches that stack.
 3. For JavaScript, TypeScript, Node, package-manager, install, or script-runner review, also use `$eric-javascript`.
 4. Check for correctness bugs, behavioral regressions, overengineering, style drift, missing focused tests, and boundary violations.
 5. Lead with findings ordered by severity. Include file and line references when available.
