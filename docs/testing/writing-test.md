@@ -1,9 +1,9 @@
 # Writing tests
 
-Every test should have a clear reason to exist. Before writing it, decide
-whether it is mostly a regression lock, a correctness check, or both.
+A test has a result and a method. This document only covers unit tests and
+integration tests.
 
-## Two purposes
+## Core results
 
 1. Regression locks protect behavior that already mattered. Use them after a
    bug fix, refactor, migration, or dependency upgrade so the same behavior does
@@ -12,23 +12,28 @@ whether it is mostly a regression lock, a correctness check, or both.
    product requirement. The expected result should come from the rule, not from
    copying the current implementation output.
 
-## Rules
+Every test should explain which result it protects. If it cannot, skip it.
 
-1. Name the purpose in the test name or scenario. A future reader should know
-   what behavior the test protects.
-2. For a regression test, reproduce the old failure first when possible. The
-   test should fail on the broken code and pass after the fix.
-3. For a correctness test, include the important boundary or adversarial cases,
-   not only the happy path.
-4. Test the public behavior of the unit, module, service, route, component, or
-   command. Avoid testing private implementation details unless they are the
-   real contract.
-5. Keep fixtures small. Large setup usually hides the behavior the test is meant
-   to protect.
-6. One test should fail for one clear reason. Split unrelated assertions when
-   they describe different behavior.
-7. Avoid broad snapshots unless the output format itself is the contract.
-8. If a test is hard to write, first ask whether the code boundary is wrong. A
-   small refactor is better than a brittle test around tangled code.
-9. Do not add tests just to increase counts or coverage. Coverage is useful only
-   when it points at real unprotected behavior.
+## Methods
+
+1. Unit tests check one unit's public behavior with collaborators controlled or
+   replaced. Use them when the rule can be proved without real storage, network,
+   process, or framework behavior.
+2. Integration tests check real collaboration between project-owned pieces: for
+   example service plus repo, route plus service, parser plus serializer, or
+   adapter plus local test double. Use them when the risk lives in wiring,
+   persistence, transactions, configuration, or data shape.
+
+Choose a unit test when it proves the result. Choose an integration test only
+when a unit test would fake away the risk.
+
+## Methodology
+
+1. Start from a rule or a bug. Do not start from coverage numbers.
+2. For regression, make the test fail on the old code when it is cheap to do so.
+3. For correctness, include the important adversarial cases: empty, missing,
+   invalid, duplicate, out-of-order, permission-denied, or external-failure
+   inputs.
+4. Test the public boundary. Private details are test targets only when they are
+   the real contract.
+5. Keep setup small. One test should fail for one clear reason.
