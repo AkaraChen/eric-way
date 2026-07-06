@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Grill"
+  short_description: "Stress-test plans and domain models"
+  default_prompt: "Use $eric-grill to grill this plan and sharpen its domain model."
