@@ -1,6 +1,6 @@
 ---
 name: eric-review
-description: Review code using Eric's standards. Use when the user asks for review, code review, frontend review, backend review, desktop review, React review, architecture review, PR review, or asks whether code matches Eric's style; prioritize concrete bugs, risks, overengineering, style drift, and missing focused tests.
+description: Review code using Eric's standards. Use when the user asks for review, code review, frontend review, backend review, desktop review, React review, architecture review, PR review, or asks whether code matches Eric's style; prioritize concrete bugs, risks, overengineering, style drift, missing focused tests, and a matching HTML review artifact.
 ---
 
 # Eric Review
@@ -16,6 +16,21 @@ Use this skill for review tasks. Start from concrete findings, not a broad summa
 5. Check for correctness bugs, behavioral regressions, overengineering, style drift, missing focused tests, and boundary violations.
 6. Lead with findings ordered by severity. Include file and line references when available.
 7. If there are no issues, say so and mention remaining test gaps or residual risk.
+
+## Output Contract
+
+Every Eric review should ship two outputs:
+
+1. The normal findings-first review in chat.
+2. A companion HTML artifact under `artifacts/` with the same substantive content.
+
+Rules:
+
+- The HTML must include every finding, open question, summary point, and residual risk or test gap that appears in the chat review. Do not split content between the two outputs.
+- Use `references/guided-review-example-openai-node-1949.html` as the baseline layout and styling. Reuse that structure instead of inventing a new page each time.
+- Prefer `artifacts/eric-review.html`. If one run needs multiple review artifacts, add a short suffix.
+- Mention the HTML artifact path in the chat response so the user can find it quickly.
+- If there are no findings, say that in both outputs and still include residual risk or testing gaps.
 
 ## Standards
 

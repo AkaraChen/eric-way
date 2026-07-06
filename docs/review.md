@@ -1,5 +1,11 @@
 # How to review in Eric way
 
+## Output Contract
+
+Every Eric review should produce the normal findings-first text review plus a companion HTML artifact under `artifacts/` that contains the same findings, questions, and residual risk or test-gap notes.
+
+Use `skills/eric-review/references/guided-review-example-openai-node-1949.html` as the baseline layout. The artifact should stay close to that example instead of inventing a new review page design.
+
 1. First step, check for wierd code formatting, indentation, and naming conventions. Make sure the code is clean and follows the project's style guide.
 2. Next, check for bad practices, such as overuse of defensive programming, unnecessary complexity, and lack of modularity. Make sure the code is easy to read and understand.
 3. If the code already typed, there is no need for checking types at runtime, if the runtime checking is required, the code should be refactored to use types instead of runtime checking.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Eric Review"
-  short_description: "Review code using Eric's standards"
-  default_prompt: "Use $eric-review to review code against Eric's standards."
+  short_description: "Review code and emit a matching HTML artifact"
+  default_prompt: "Use $eric-review to review code against Eric's standards, then write the same review into an HTML artifact under artifacts/."
