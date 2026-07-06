@@ -6,7 +6,7 @@
 
 ## GitHub PR Setup
 
-For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before deep review. Start by auto-marking safe test-only files as viewed with GitHub GraphQL so the remaining changed-files view stays focused on production code and review evidence.
+For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before deep review. Start by auto-marking safe test-only and generated-only files as viewed with GitHub GraphQL so the remaining changed-files view stays focused on production code and review evidence.
 
 ## Frontend
 

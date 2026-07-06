@@ -1,8 +1,8 @@
 # GitHub PR Review Operations
 
-This document covers GitHub-specific review mechanics that reduce visual noise before writing a Guided Review. The first operation is automatically marking low-risk test files as viewed so the reviewer can keep the changed-files UI focused on production code and review evidence.
+This document covers GitHub-specific review mechanics that reduce visual noise before writing a Guided Review. The first operation is automatically marking low-risk test and generated files as viewed so the reviewer can keep the changed-files UI focused on production code and review evidence.
 
-## 1. Auto-Mark Test Files As Viewed
+## 1. Auto-Mark Low-Risk Files As Viewed
 
 GitHub exposes file viewed state through GraphQL:
 
@@ -10,7 +10,7 @@ GitHub exposes file viewed state through GraphQL:
 - `markFileAsViewed(input: { pullRequestId, path })` marks one PR file as viewed for the current viewer.
 - `unmarkFileAsViewed` exists for undo.
 
-Use this as a folding primitive, not as a substitute for review. The reviewer or agent should first inspect the test line enough to understand what the tests prove, then mark obvious test-only files as viewed to keep the remaining diff smaller.
+Use this as a folding primitive, not as a substitute for review. The reviewer or agent should first inspect the test line enough to understand what the tests prove, sample generated output enough to tie it back to its source/tool change, then mark obvious test-only and generated-only files as viewed to keep the remaining diff smaller.
 
 ### Query Changed Files
 
@@ -39,7 +39,7 @@ query PullRequestFiles($owner: String!, $repo: String!, $number: Int!, $cursor: 
 
 ### Select Files To Mark
 
-Start with conservative test-only path patterns:
+Start with conservative test-only path patterns and generated-file indicators:
 
 ```text
 __tests__/
@@ -48,9 +48,13 @@ tests/
 *.test.*
 *.spec.*
 *.snap
+__generated__/
+generated/
+*.generated.*
+*.gen.*
 ```
 
-Do not mark production code, migrations, public API changes, security-sensitive fixtures, generated client contracts, or snapshots whose change is the main review evidence. If a test file is the only proof for a risky behavior, keep it visible until the Guided Review calls out that evidence.
+Only mark a generated file after confirming it is mechanical output from a reviewed source change. Do not mark production code, migrations, public API changes, security-sensitive fixtures, generated contracts whose API surface is under review, or snapshots whose change is the main review evidence. If a test or generated file is the only proof for a risky behavior, keep it visible until the Guided Review calls out that evidence.
 
 ### Mark One File
 
@@ -91,10 +95,10 @@ await octokit.request("POST /graphql", {
 ### Execution Rule
 
 1. Fetch all PR files with pagination.
-2. Keep files where `viewerViewedState !== "VIEWED"` and the path is test-only.
-3. Read enough of those files to summarize the test line.
-4. Call `markFileAsViewed` for each safe test file.
-5. Continue the Guided Review on the remaining unviewed production, config, migration, generated-contract, and documentation files.
+2. Keep files where `viewerViewedState !== "VIEWED"` and the path is test-only or generated-only.
+3. Read enough of those files to summarize the test line or generated-source relationship.
+4. Call `markFileAsViewed` for each safe test or generated file.
+5. Continue the Guided Review on the remaining unviewed production, config, migration, generated files that need judgment, and documentation files.
 
 ## Accuracy Notes
 
