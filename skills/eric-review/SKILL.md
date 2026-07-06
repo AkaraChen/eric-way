@@ -10,11 +10,12 @@ Use this skill for review tasks. Start from concrete findings, not a broad summa
 ## Workflow
 
 1. Inspect the actual diff or files under review before judging.
-2. Read `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop` when the diff touches that stack.
-3. For JavaScript, TypeScript, Node, package-manager, install, or script-runner review, also use `$eric-javascript`.
-4. Check for correctness bugs, behavioral regressions, overengineering, style drift, missing focused tests, and boundary violations.
-5. Lead with findings ordered by severity. Include file and line references when available.
-6. If there are no issues, say so and mention remaining test gaps or residual risk.
+2. For GitHub PRs, after inspecting enough test and generated evidence, mark safe test-only and generated-only files as viewed so the remaining changed-files view stays focused.
+3. Read `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop` when the diff touches that stack.
+4. For JavaScript, TypeScript, Node, package-manager, install, or script-runner review, also use `$eric-javascript`.
+5. Check for correctness bugs, behavioral regressions, overengineering, style drift, missing focused tests, and boundary violations.
+6. Lead with findings ordered by severity. Include file and line references when available.
+7. If there are no issues, say so and mention remaining test gaps or residual risk.
 
 ## Standards
 

@@ -74,7 +74,7 @@ Cross-cutting lines run through many files.
 - List added, modified, deleted, renamed, generated, config, test, and documentation files.
 - Group files by responsibility instead of trusting the platform's default file order.
 - Identify the main files: entry points, core service logic, schemas, migrations, state management, public APIs, or UI surfaces.
-- On GitHub PRs, prepare the changed-files view with [GitHub PR Review Operations](gh-pr.md): after reading enough to understand the test line, mark safe test-only files as viewed so the remaining diff stays focused.
+- On GitHub PRs, prepare the changed-files view with [GitHub PR Review Operations](gh-pr.md): after reading enough to understand the test line and generated-source relationship, mark safe test-only and generated-only files as viewed so the remaining diff stays focused.
 - Generated files and large static data can be sampled, but human-written logic should not be skipped unless the review scope explicitly excludes it.
 
 ### 2. Reconstruct The Change Graph
