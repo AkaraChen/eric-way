@@ -9,7 +9,7 @@ Use this skill to grill a plan while actively sharpening the project's domain mo
 
 ## Ground Rule
 
-Assume the repo has multiple domain contexts. `CONTEXT-MAP.md` is the default routing document. Do not introduce or recommend a single catch-all context model.
+Assume the repo has multiple domain contexts. `CONTEXT-MAP.md` is the default routing document.
 
 Create files lazily: only when a term, context boundary, relationship, or ADR-worthy decision has actually crystallized.
 
