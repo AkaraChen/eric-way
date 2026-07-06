@@ -9,9 +9,10 @@ Use this skill to force clarity before building. Be direct, concrete, and code-a
 
 ## Workflow
 
-1. Read existing context first:
-   - If `CONTEXT-MAP.md` exists, choose the relevant context and read its `CONTEXT.md`.
-   - Otherwise read the root `CONTEXT.md` if it exists.
+1. Read existing context through the context-map first:
+   - If `CONTEXT-MAP.md` exists, use it to choose the relevant bounded context, area, or linked artifact.
+   - Do not fall back to a single catch-all context file by default.
+   - If no map exists and a domain term becomes settled, create `CONTEXT-MAP.md` with just that term and area.
    - Read relevant ADRs only when the plan touches an existing decision.
 2. Restate the plan in one tight paragraph: outcome, actors, changed behavior, and assumptions.
 3. Inspect code instead of asking whenever the answer can be found cheaply.
@@ -33,17 +34,19 @@ Use this skill to force clarity before building. Be direct, concrete, and code-a
 
 ## Domain Model Updates
 
-When a domain term is resolved, update the relevant `CONTEXT.md` immediately. If no context file exists, create `CONTEXT.md` only when the first term is resolved.
+When a domain term is resolved, update `CONTEXT-MAP.md` immediately. Keep entries scoped by area so future agents can load only the relevant context.
 
 Use this format:
 
 ```markdown
+# Context Map
+
 ## Glossary
 
-- `Term`: Meaning in domain language. Include key distinctions, not implementation details.
+- `<area>` / `Term`: Meaning in domain language. Include key distinctions, not implementation details.
 ```
 
-`CONTEXT.md` is a glossary only. Do not put implementation details, specs, scratch notes, or ADR content in it.
+The context-map is a glossary and routing layer. Do not put implementation details, specs, scratch notes, or ADR content in it.
 
 ## ADRs
 
