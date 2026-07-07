@@ -7,6 +7,8 @@ description: Review code using Eric's standards. Use when the user asks for revi
 
 Use this skill for review tasks. Start from concrete findings, not a broad summary. Also check the relevant Eric skill for the code under review: `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
 
+For detailed review guidance, read `references/review.md`. For guided-review walkthroughs or examples, read `references/guided-review.md` and `references/guided-review-example-openai-node-1949.html`.
+
 ## Workflow
 
 1. Inspect the actual diff or files under review before judging.
