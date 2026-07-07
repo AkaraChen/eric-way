@@ -4,6 +4,15 @@
 2. Next, check for bad practices, such as overuse of defensive programming, unnecessary complexity, and lack of modularity. Make sure the code is easy to read and understand.
 3. If the code already typed, there is no need for checking types at runtime, if the runtime checking is required, the code should be refactored to use types instead of runtime checking.
 
+## New Concepts
+
+When reviewing a PR, check whether it introduces a new concept: a domain term, lifecycle state, permission boundary, storage model, async contract, public API shape, or review category that future contributors must understand. If it does, require a clear name, one entry point, the invariant it owns, and tests or docs that teach the concept instead of leaving it implicit.
+
+```text
+New concept: workspace invitation lifecycle
+entry point -> state owner -> permission rule -> persistence -> docs/tests
+```
+
 ## GitHub PR Setup
 
 For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before deep review. Start by auto-marking safe test-only and generated-only files as viewed with GitHub GraphQL so the remaining changed-files view stays focused on production code and review evidence.

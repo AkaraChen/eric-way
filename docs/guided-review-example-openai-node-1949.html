@@ -488,6 +488,7 @@
           <a href="#thesis">Thesis</a>
           <a href="#reading">Reading order</a>
           <a href="#lines">Evidence</a>
+          <a href="#concepts">Concepts</a>
           <a href="#risks">Risks</a>
           <a href="#questions">Questions</a>
           <a href="#recommendation">Recommendation</a>
@@ -702,6 +703,39 @@
                 </article>
                 <p>The public docs describe both the new default and the opt-out.</p>
               </article>
+            </div>
+          </section>
+
+          <section id="concepts">
+            <h2>New Concept Check</h2>
+            <div class="risk-table">
+              <div class="risk-row">
+                <strong><span class="tag warn">Concept line</span></strong>
+                <article class="code-card">
+                  <header>
+                    <h3>Evidence: grouped tool calls become a named execution mode</h3>
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/src/lib/AbstractChatCompletionRunner.ts#L410-L421"
+                      >AbstractChatCompletionRunner.ts:410-421</a
+                    >
+                    /
+                    <a
+                      href="https://github.com/openai/openai-node/blob/47e8b90bf0d8889db8942a294c06d21b6cb85d62/helpers.md#L317-L319"
+                      >helpers.md:317-319</a
+                    >
+                  </header>
+                  <pre><span class="code-line"><span class="ln">410</span><span class="src">if (singleFunctionToCall || params.parallel_tool_calls === false) {</span></span>
+<span class="code-line"><span class="ln">421</span><span class="src">const results = await Promise.allSettled(message.tool_calls.map(runToolCall));</span></span>
+<span class="code-line"><span class="ln">317</span><span class="src">runTools executes them concurrently by default</span></span>
+<span class="code-line"><span class="ln">319</span><span class="src">Set parallel_tool_calls: false...</span></span></pre>
+                </article>
+                <p>
+                  This PR introduces a concept future reviewers must understand: grouped tool calls
+                  now run concurrently by default while preserving ordered result submission. Review
+                  the name, owner, invariant, docs, and tests together instead of treating it as only
+                  a local implementation detail.
+                </p>
+              </div>
             </div>
           </section>
 

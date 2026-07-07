@@ -15,7 +15,7 @@ For detailed review guidance, read `references/review.md`. For guided-review wal
 2. For GitHub PRs, after inspecting enough test and generated evidence, mark safe test-only and generated-only files as viewed so the remaining changed-files view stays focused.
 3. Read `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop` when the diff touches that stack.
 4. For JavaScript, TypeScript, Node, package-manager, install, or script-runner review, also use `$eric-javascript`.
-5. Check for correctness bugs, behavioral regressions, overengineering, style drift, missing focused tests, and boundary violations.
+5. Check for correctness bugs, behavioral regressions, newly introduced concepts, overengineering, style drift, missing focused tests, and boundary violations.
 6. Lead with findings ordered by severity. Include file and line references when available.
 7. If there are no issues, say so and mention remaining test gaps or residual risk.
 
@@ -23,6 +23,7 @@ For detailed review guidance, read `references/review.md`. For guided-review wal
 
 - First check formatting, indentation, naming, and local style consistency.
 - Then check over-defensive code, unnecessary complexity, speculative abstraction, poor modularity, and missing focused tests.
+- If a PR introduces a new concept, require a clear name, one entry point, the invariant it owns, and tests or docs that make the concept teachable.
 - Do not ask for runtime validation that duplicates static types unless data crosses an untrusted boundary.
 - Frontend: flag `any`, large render branching, manually concatenated `className` strings, business classes in global CSS, and inline request/query-key/invalidation code when the repo has a request/cache layer.
 - React: assume compiler unless the repo proves otherwise; do not ask for `useMemo` or `useCallback` unless stable identity is required.

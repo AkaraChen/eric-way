@@ -24,9 +24,10 @@ A useful Guided Review has these parts:
 2. **Suggested reading order**: where to start, what to read next, and why.
 3. **Line map**: the visible line, hidden line, and cross-cutting lines of the change.
 4. **Risk focus**: the paths, boundaries, migrations, rollback points, or assumptions that deserve attention.
-5. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
-6. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
-7. **Review recommendation**: approve, request changes, or comment only, with blockers separated from non-blocking follow-up.
+5. **Concept focus**: any new domain term, lifecycle state, permission boundary, storage model, async contract, public API shape, or review category the PR expects future contributors to understand.
+6. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
+7. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
+8. **Review recommendation**: approve, request changes, or comment only, with blockers separated from non-blocking follow-up.
 
 ## The Line Model
 
@@ -49,6 +50,15 @@ The hidden line is what the diff assumes but does not explain directly.
 - Migration risk: old data, old clients, old configuration, and feature-flag states.
 - Operational effect: logs, metrics, alerts, rollback, capacity, rate limits, and deploy sequencing.
 - Review shape: unrelated changes bundled together, large diffs hiding small decisions, or social pressure to approve too much at once.
+
+### Concept Line
+
+The concept line names any new idea the PR adds to the codebase.
+
+- Name: the term future contributors will search for and use in discussion.
+- Entry point: where the concept first appears in code or user behavior.
+- Owner: the module, type, table, state machine, or API that owns the concept's invariant.
+- Proof: tests, docs, examples, or migration notes that teach the concept.
 
 ### Cross-Cutting Lines
 
@@ -90,6 +100,7 @@ For each flow, answer:
 - Where does this change enter the system?
 - Which fact, invariant, or contract does it change?
 - Who depends on that new fact later?
+- Does it introduce a new concept that should be named, owned, documented, or tested?
 
 ### 3. Extract Lines
 
@@ -97,6 +108,7 @@ Extract the visible line first, the hidden line second, and the cross-cutting li
 
 - Write the visible line in product or user language: who can now do what.
 - Write the hidden line in engineering language: what must be true for this to be safe.
+- Write the concept line when the PR adds a new term, state, boundary, storage model, async contract, public API shape, or review category.
 - Write cross-cutting lines in reviewer language: security, concurrency, performance, compatibility, observability, tests, rollback.
 
 Do not invent lines to make the artifact look complete. If evidence is missing, mark the line as unproven or ask the author.
@@ -107,6 +119,7 @@ On the second pass, stop reading file by file. Follow each line to completion.
 
 - Follow the visible line through entry point, core logic, output, and tests.
 - Follow the hidden line through edge cases, old data, failure paths, permissions, and concurrency.
+- Follow the concept line through naming, ownership, invariants, docs, examples, and tests.
 - Follow the test line through test names, fixtures, assertions, and failure mode.
 - Follow the deletion line through callers, configuration, docs, migrations, and user habits.
 
@@ -118,7 +131,7 @@ Use three levels:
 - **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, create test gaps, or invite misuse.
 - **Nit / follow-up**: optional polish or separate work that should not block the PR.
 
-In Eric way reviews, especially watch for over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
+In Eric way reviews, especially watch for unclear new concepts, over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
 
 ### 6. Write The Guided Review
 
@@ -143,6 +156,7 @@ One sentence describing the core change.
 - Error line: ...
 - Test line: ...
 - Hidden line: ...
+- Concept line: ...
 
 ### Key Risks
 - Blocker: ...
