@@ -5,6 +5,7 @@
 3. Use FSD (Feature-Sliced Design) architecture for organizing your code. This means that each feature should have its own folder, which contains all the necessary files for that feature (e.g., components, services, etc.).
 4. Always use TypeScript, there's no reason to use JavaScript in Eric way. Only some configuration files can be written in JavaScript, but the main application code should always be written in TypeScript for better type safety and maintainability.
 5. Never compose class names by manually concatenating strings or template literals. First look for the project's existing helper that wraps `clsx`, `classnames`, `cva`, `twMerge`, or similar packages; if no wrapper exists, call the package export directly.
+6. When the project has i18n config, route user-visible UI copy through the existing translation resources/API instead of leaving hard-coded strings in components.
 
 ## Data
 

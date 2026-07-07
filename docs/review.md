@@ -33,6 +33,7 @@ For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before dee
 1. Check for `any` type usage in TypeScript. Eric prefers to use specific types and avoid `any` as much as possible.
 2. UI code such as JSX/SFC should be simple, avoid unnecessary complexity and over-engineering. Eric prefers to keep the UI code clean and easy to read. If there's is a `if-else` or `switch` statement in JSX, it should be refactored to a few simple components instead of a big component with many conditional rendering.
 3. Flag manually concatenated class names in `className`. Prefer the project's existing `clsx`/`classnames`/`cva`/`twMerge` helper; if there is no wrapper, call the package export directly.
+4. If the project has i18n config, flag user-visible UI strings that bypass the existing translation resources/API.
 
 ## React
 

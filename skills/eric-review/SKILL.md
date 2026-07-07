@@ -26,7 +26,7 @@ For detailed review guidance, read `references/review.md`. For guided-review wal
 - Treat implementation degradation as a real finding: flag changes that keep behavior working while worsening ownership, data flow, boundaries, complexity, performance, or testability.
 - If a PR introduces a new concept, require a clear name, one entry point, the invariant it owns, and tests or docs that make the concept teachable.
 - Do not ask for runtime validation that duplicates static types unless data crosses an untrusted boundary.
-- Frontend: flag `any`, large render branching, manually concatenated `className` strings, business classes in global CSS, and inline request/query-key/invalidation code when the repo has a request/cache layer.
+- Frontend: flag `any`, large render branching, manually concatenated `className` strings, hard-coded user-visible UI strings when the repo has i18n config, business classes in global CSS, and inline request/query-key/invalidation code when the repo has a request/cache layer.
 - React: assume compiler unless the repo proves otherwise; do not ask for `useMemo` or `useCallback` unless stable identity is required.
 - React: challenge `useEffect`; prefer TanStack Query for data fetching and `useSyncExternalStore` for external subscriptions.
 - Backend: keep transport thin, preserve service/core boundaries, use typed Rust errors in reusable code, and validate at trust boundaries.
