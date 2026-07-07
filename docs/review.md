@@ -13,6 +13,17 @@ New concept: workspace invitation lifecycle
 entry point -> state owner -> permission rule -> persistence -> docs/tests
 ```
 
+## Implementation Degradation Findings
+
+Findings must call out implementation degradation even when the visible behavior works. Compare the new code against the old ownership, data flow, boundaries, complexity, performance, and test shape. A PR degrades the implementation when it spreads one responsibility across more places, duplicates an existing helper, weakens an invariant, moves business logic into the wrong layer, broadens an API for one caller, or makes the same behavior harder to test or change.
+
+```text
+Finding: implementation degradation
+before: request cache owns invalidation
+after: components duplicate query keys and refetch timing
+impact: behavior works today, but correctness moved out of the cache layer
+```
+
 ## GitHub PR Setup
 
 For GitHub pull requests, use [GitHub PR Review Operations](gh-pr.md) before deep review. Start by auto-marking safe test-only and generated-only files as viewed with GitHub GraphQL so the remaining changed-files view stays focused on production code and review evidence.

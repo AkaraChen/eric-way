@@ -23,7 +23,7 @@ A useful Guided Review has these parts:
 1. **One-sentence thesis**: the core behavior or system change in the PR.
 2. **Suggested reading order**: where to start, what to read next, and why.
 3. **Line map**: the visible line, hidden line, and cross-cutting lines of the change.
-4. **Risk focus**: the paths, boundaries, migrations, rollback points, or assumptions that deserve attention.
+4. **Risk focus**: the paths, boundaries, migrations, rollback points, implementation degradation, or assumptions that deserve attention.
 5. **Concept focus**: any new domain term, lifecycle state, permission boundary, storage model, async contract, public API shape, or review category the PR expects future contributors to understand.
 6. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
 7. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
@@ -70,6 +70,7 @@ Cross-cutting lines run through many files.
 - Error line: failure classification, propagation, user messaging, retry, fallback.
 - Test line: what the tests prove, what they do not prove, and whether they fail for the right reason.
 - Complexity line: whether the PR adds abstraction for a current need or a speculative future need.
+- Degradation line: whether the code now has worse ownership, data flow, boundaries, performance, or testability even if behavior works.
 
 ## Process
 
@@ -120,6 +121,7 @@ On the second pass, stop reading file by file. Follow each line to completion.
 - Follow the visible line through entry point, core logic, output, and tests.
 - Follow the hidden line through edge cases, old data, failure paths, permissions, and concurrency.
 - Follow the concept line through naming, ownership, invariants, docs, examples, and tests.
+- Follow the degradation line through old vs new ownership, duplicated helpers, broadened APIs, weakened invariants, complexity, performance, and testability.
 - Follow the test line through test names, fixtures, assertions, and failure mode.
 - Follow the deletion line through callers, configuration, docs, migrations, and user habits.
 
@@ -128,10 +130,10 @@ On the second pass, stop reading file by file. Follow each line to completion.
 Use three levels:
 
 - **Blocker**: correctness, security, data integrity, compatibility, deployability, rollback, or the main requirement is broken.
-- **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, create test gaps, or invite misuse.
+- **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, degrade implementation quality, create test gaps, or invite misuse.
 - **Nit / follow-up**: optional polish or separate work that should not block the PR.
 
-In Eric way reviews, especially watch for unclear new concepts, over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
+In Eric way reviews, especially watch for implementation degradation, unclear new concepts, over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
 
 ### 6. Write The Guided Review
 
@@ -157,9 +159,11 @@ One sentence describing the core change.
 - Test line: ...
 - Hidden line: ...
 - Concept line: ...
+- Degradation line: ...
 
 ### Key Risks
 - Blocker: ...
+- Implementation degradation: ...
 - Should fix: ...
 - Follow-up: ...
 
