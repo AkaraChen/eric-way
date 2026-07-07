@@ -23,10 +23,11 @@ A useful Guided Review has these parts:
 1. **One-sentence thesis**: the core behavior or system change in the PR.
 2. **Suggested reading order**: where to start, what to read next, and why.
 3. **Line map**: the visible line, hidden line, and cross-cutting lines of the change.
-4. **Risk focus**: the paths, boundaries, migrations, rollback points, or assumptions that deserve attention.
-5. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
-6. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
-7. **Review recommendation**: approve, request changes, or comment only, with blockers separated from non-blocking follow-up.
+4. **Risk focus**: the paths, boundaries, migrations, rollback points, implementation degradation, or assumptions that deserve attention.
+5. **Concept focus**: any new domain term, lifecycle state, permission boundary, storage model, async contract, public API shape, or review category the PR expects future contributors to understand.
+6. **Verification focus**: which tests, screenshots, logs, manual checks, or CI signals prove the change, and which claims remain unproven.
+7. **Questions for the author**: only questions that affect understanding, correctness, risk, or review decision.
+8. **Review recommendation**: approve, request changes, or comment only, with blockers separated from non-blocking follow-up.
 
 ## The Line Model
 
@@ -50,6 +51,15 @@ The hidden line is what the diff assumes but does not explain directly.
 - Operational effect: logs, metrics, alerts, rollback, capacity, rate limits, and deploy sequencing.
 - Review shape: unrelated changes bundled together, large diffs hiding small decisions, or social pressure to approve too much at once.
 
+### Concept Line
+
+The concept line names any new idea the PR adds to the codebase.
+
+- Name: the term future contributors will search for and use in discussion.
+- Entry point: where the concept first appears in code or user behavior.
+- Owner: the module, type, table, state machine, or API that owns the concept's invariant.
+- Proof: tests, docs, examples, or migration notes that teach the concept.
+
 ### Cross-Cutting Lines
 
 Cross-cutting lines run through many files.
@@ -60,6 +70,7 @@ Cross-cutting lines run through many files.
 - Error line: failure classification, propagation, user messaging, retry, fallback.
 - Test line: what the tests prove, what they do not prove, and whether they fail for the right reason.
 - Complexity line: whether the PR adds abstraction for a current need or a speculative future need.
+- Degradation line: whether the code now has worse ownership, data flow, boundaries, performance, or testability even if behavior works.
 
 ## Process
 
@@ -90,6 +101,7 @@ For each flow, answer:
 - Where does this change enter the system?
 - Which fact, invariant, or contract does it change?
 - Who depends on that new fact later?
+- Does it introduce a new concept that should be named, owned, documented, or tested?
 
 ### 3. Extract Lines
 
@@ -97,6 +109,7 @@ Extract the visible line first, the hidden line second, and the cross-cutting li
 
 - Write the visible line in product or user language: who can now do what.
 - Write the hidden line in engineering language: what must be true for this to be safe.
+- Write the concept line when the PR adds a new term, state, boundary, storage model, async contract, public API shape, or review category.
 - Write cross-cutting lines in reviewer language: security, concurrency, performance, compatibility, observability, tests, rollback.
 
 Do not invent lines to make the artifact look complete. If evidence is missing, mark the line as unproven or ask the author.
@@ -107,6 +120,8 @@ On the second pass, stop reading file by file. Follow each line to completion.
 
 - Follow the visible line through entry point, core logic, output, and tests.
 - Follow the hidden line through edge cases, old data, failure paths, permissions, and concurrency.
+- Follow the concept line through naming, ownership, invariants, docs, examples, and tests.
+- Follow the degradation line through old vs new ownership, duplicated helpers, broadened APIs, weakened invariants, complexity, performance, and testability.
 - Follow the test line through test names, fixtures, assertions, and failure mode.
 - Follow the deletion line through callers, configuration, docs, migrations, and user habits.
 
@@ -115,10 +130,10 @@ On the second pass, stop reading file by file. Follow each line to completion.
 Use three levels:
 
 - **Blocker**: correctness, security, data integrity, compatibility, deployability, rollback, or the main requirement is broken.
-- **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, create test gaps, or invite misuse.
+- **Should fix**: not immediately catastrophic, but likely to increase maintenance cost, degrade implementation quality, create test gaps, or invite misuse.
 - **Nit / follow-up**: optional polish or separate work that should not block the PR.
 
-In Eric way reviews, especially watch for over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
+In Eric way reviews, especially watch for implementation degradation, unclear new concepts, over-defensive code, speculative abstractions, runtime validation that duplicates static types, large render branches, manual `className` concatenation where a helper exists, unnecessary `useMemo` / `useCallback`, and avoidable `useEffect`.
 
 ### 6. Write The Guided Review
 
@@ -143,9 +158,12 @@ One sentence describing the core change.
 - Error line: ...
 - Test line: ...
 - Hidden line: ...
+- Concept line: ...
+- Degradation line: ...
 
 ### Key Risks
 - Blocker: ...
+- Implementation degradation: ...
 - Should fix: ...
 - Follow-up: ...
 
