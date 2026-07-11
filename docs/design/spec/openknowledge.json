@@ -100,8 +100,8 @@
     "genre": "modern dev-tool / AI-product landing page (Linear/Vercel lineage) but warm-paper instead of dark",
     "visual_language": "cream paper background + dot grid = engineering notebook; azure blue as the single vivid accent; product UI itself is the hero imagery",
     "composition": "eyebrow, light oversized headline, short declarative subhead, live product demo; repeated per section",
-    "imagery": "no photography; all illustration is real product UI (editor windows, agent chat transcripts, timelines) plus partner-tool logos",
-    "ornamentation": "minimal — dot grid texture, hairline rules, occasional warm-amber callout tint",
+    "imagery": "no photography; real product UI (editor windows, agent chat transcripts, timelines) is the primary imagery, staged over soft dawn-sky mesh-gradient image backdrops (sky blue #b3d4f7 to warm peach #f8e7dd to pale mint — the morning-mist/golden-sun palette as atmosphere); flat crystal-blue #d5e5ff elongated-hexagon shapes with a blurred echo layer flank the CTA; partner-tool logos as static SVGs",
+    "ornamentation": "minimal — dot grid texture, hairline rules, occasional warm-amber callout tint, plus atmospheric dawn-sky gradient backdrops and flat crystal-blue hexagon accents reserved for hero/CTA moments",
     "whitespace_philosophy": "generous; whitespace does the separating, borders do the grouping",
     "copy_voice": "short, plain, benefit-led sentences; mono uppercase section labels",
     "interaction_feel": "snappy and physical — quick 120-200ms color transitions, subtle lift/press on buttons"
@@ -110,7 +110,7 @@
     "overview": {
       "effect_intensity": "low-medium",
       "performance_tier": "lightweight — CSS/DOM only, no WebGL/Canvas/Three.js detected",
-      "composite_notes": "Signature effects: (1) dot-grid paper background, (2) glassmorphic overlay panels (20px backdrop blur, 28px radius, translucent #fffefe2e fill, cool blue shadow), (3) staggered fade-up reveals, (4) odometer-style rolling-digit ticker demo, (5) faux multi-agent chat windows cycling between Claude/Cursor/Codex tabs."
+      "composite_notes": "Signature effects: (1) dot-grid paper background, (2) soft dawn-sky mesh-gradient image backdrops behind hero and pillar demo boxes (static webp assets: hero-box-background.webp 2696x808, pillar gradients — blue to peach to mint washes), (3) glassmorphic overlay panels (20px backdrop blur, 28px radius, translucent #fffefe2e fill, cool blue shadow) floating over those gradients, (4) staggered fade-up reveals, (5) odometer-style rolling-digit ticker demo, (6) faux multi-agent chat windows cycling between Claude/Cursor/Codex tabs, (7) flat #d5e5ff hexagon SVG shapes with feGaussianBlur echo flanking the CTA."
     },
     "glassmorphism": {
       "enabled": true,
@@ -127,6 +127,10 @@
     "animated_ui_demos": {
       "enabled": true,
       "details": "rolling-digit ticker (translateY digit strips), tabbed agent-conversation player, animated timeline feed — all DOM/CSS driven"
+    },
+    "background_gradients": {
+      "enabled": true,
+      "details": "static mesh-gradient image assets (webp), not CSS gradients: dawn-sky wash from #b3d4f7 sky blue through #f8e7dd warm peach to pale mint/teal; used behind hero product window and pillar sections; glass panels blur over them"
     },
     "canvas_2d": { "enabled": false },
     "webgl_3d": { "enabled": false },

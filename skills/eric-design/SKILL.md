@@ -32,6 +32,12 @@ Use this skill when making visual or UX design decisions for web/app UI. The can
 - Prefer Phosphor Icons, unless the project already has a default icon library — then use the project's default.
 - Phosphor variants: default to `regular`. Use `duotone` only for purely presentational, non-clickable, decorative icons (it has more visual depth). For action buttons such as edit or confirm, check the project's existing practice and use `regular` or `bold`.
 
+## Design DNA specs
+
+Design DNA profiles extracted from reference sites live under `references/spec/`, one JSON per site.
+
+When suggesting a design style or visual direction, list that folder, read the specs, and consider them as candidate directions. When one is chosen, derive tokens and treatments from its JSON instead of inventing values.
+
 ## Boundaries
 
 - Do not invent a new design system when the repo already has one.
