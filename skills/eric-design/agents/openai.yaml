@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Design"
+  short_description: "Apply Eric's design standards"
+  default_prompt: "Use $eric-design to make visual and UX design decisions in Eric's style."
