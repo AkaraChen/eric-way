@@ -1,0 +1,9 @@
+[submodule "vendor/design-dna"]
+	path = vendor/design-dna
+	url = https://github.com/zanwei/design-dna
+[submodule "vendor/kill-ai-slop"]
+	path = vendor/kill-ai-slop
+	url = https://github.com/yetone/kill-ai-slop
+[submodule "vendor/native-feel-skill"]
+	path = vendor/native-feel-skill
+	url = https://github.com/yetone/native-feel-skill
