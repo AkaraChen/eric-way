@@ -7,6 +7,13 @@ description: Apply Eric's test-writing standards. Use when deciding whether to a
 
 Use this skill for unit and integration test decisions. For stack-specific test code, also use the relevant Eric skill: `$eric-javascript`, `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
 
+## Global Gate
+
+Before writing or planning any test, answer two questions. If either answer is no, stop and say so instead of writing the test.
+
+1. Is this test suitable for the product? Match the test investment to what the product actually is: its stage (prototype vs production), its risk profile, its stack, and how the repo already tests. A throwaway spike, a demo, or generated glue code does not get the same treatment as a payment path or a shared library.
+2. Is it worth a test? The behavior must be able to break in a way that matters, and the test must be able to catch that break. If the code is trivial, the framework already guarantees it, or the test would only mirror the implementation, it is not worth a test.
+
 ## Workflow
 
 1. Start from a bug, rule, contract, invariant, or product requirement. Do not start from coverage numbers.
