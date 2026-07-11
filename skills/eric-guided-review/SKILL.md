@@ -9,6 +9,8 @@ A Guided Review turns a pull request diff into a readable map. It is not a file-
 
 Use `$eric-review` for normal code review findings. For GitHub PR changed-file operations such as marking safe test-only files viewed, use `$eric-github-pr` before deep review.
 
+For extended guidance and industry practices behind this process, read [`references/guided-review.md`](references/guided-review.md).
+
 ## Output
 
 A useful Guided Review has:
@@ -91,6 +93,7 @@ Approve / Request changes / Comment only: reason.
 - For multiple PRs, also generate an index page that lists every PR and links to each PR's HTML page; do not merge several PRs into one page.
 - Every claim about the change must reference the code it describes: quote the relevant code block (real lines from the diff, with file path and line numbers) next to the claim so the reader can verify the review against the actual code. A statement with no code reference is not verifiable — either add the code block or drop the statement.
 - After generating the HTML, publish it. First check whether the current environment can upload/host HTML pages (for example an artifact or page-publishing tool); if it can, upload the pages there and share the resulting URLs. If not, serve them locally instead: run `npx -y serve` on the output directory in the background and tell the user the URL. When neither is possible, fall back to sharing the file paths.
+- Use [`references/guided-review-example-openai-node-1949.html`](references/guided-review-example-openai-node-1949.html) as the reference example for structure, styling, evidence code blocks, and publish-ready output.
 
 ## Accuracy Rules
 
