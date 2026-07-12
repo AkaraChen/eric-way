@@ -5,7 +5,7 @@ description: Apply Eric's GitHub pull request review operations. Use when operat
 
 # Eric GitHub PR
 
-Use this skill for GitHub-specific pull request mechanics that reduce review noise. This is operational support, not review judgment. For review findings use `$eric-review`; for Guided Review artifacts use `$eric-guided-review`.
+Use this skill for GitHub-specific pull request mechanics that reduce review noise. This is operational support, not review judgment. For review findings use `$eric-review`; for Guided Review artifacts use `$guided-review`.
 
 ## Auto-Mark Test Files As Viewed
 

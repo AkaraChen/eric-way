@@ -7,7 +7,7 @@ description: Review code using Eric's standards. Use when the user asks for revi
 
 Use this skill for review tasks. Start from concrete findings, not a broad summary. Also check the relevant Eric skill for the code under review: `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
 
-For detailed review guidance, read `references/review.md`. For guided-review walkthroughs or examples, use `$eric-guided-review`.
+For detailed review guidance, read `references/review.md`. For guided-review walkthroughs or examples, use `$guided-review`.
 
 ## Workflow
 

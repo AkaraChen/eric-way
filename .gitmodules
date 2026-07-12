@@ -7,3 +7,6 @@
 [submodule "vendor/native-feel-skill"]
 	path = vendor/native-feel-skill
 	url = https://github.com/yetone/native-feel-skill
+[submodule "vendor/guided-review"]
+	path = vendor/guided-review
+	url = https://github.com/AkaraChen/guided-review
