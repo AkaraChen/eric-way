@@ -26,6 +26,12 @@ if [[ ! -d "$source_dir" ]]; then
   die "Missing skills directory: $source_dir"
 fi
 
+removed_skills=(eric-guided-review)
+
+if [[ -f "$repo_root/.gitmodules" ]] && command -v git >/dev/null 2>&1; then
+  git -C "$repo_root" submodule update --init --recursive || die "Failed to initialize vendored skill submodules"
+fi
+
 targets=()
 add_target() {
   local target="$1"
@@ -112,6 +118,13 @@ for target in "${targets[@]}"; do
 done
 
 for target in "${resolved_targets[@]}"; do
+  for name in "${removed_skills[@]}"; do
+    if [[ -e "$target/$name" ]]; then
+      rm -rf -- "${target:?}/$name"
+      echo "Removed $name from $target"
+    fi
+  done
+
   for skill in "$source_dir"/*; do
     [[ -f "$skill/SKILL.md" ]] || continue
 
