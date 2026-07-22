@@ -19,6 +19,7 @@ Use this skill when making visual or UX design decisions for web/app UI. The can
 ## General
 
 - Prefer toast for error feedback instead of creating inline error displays everywhere.
+- Do not add eyebrow text; it is useless.
 - For web apps and desktop apps built with web tech, apply [`references/normalize.css`](references/normalize.css) at the document root.
 
 ## Landing

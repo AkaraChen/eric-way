@@ -10,10 +10,11 @@ Use this skill for React-specific implementation or review. Also use `$eric-fron
 ## Workflow
 
 1. Inspect the existing React stack, component patterns, provider layout, state ownership, and test runner before changing code.
-2. Assume React Compiler is enabled unless the repo proves otherwise; do not add `useMemo` or `useCallback` unless stable identity is required by an API, subscription, memoized child, or effect dependency.
-3. Challenge `useEffect`; prefer TanStack Query for data fetching and `useSyncExternalStore` for external subscriptions. Keep effects for real synchronization only.
-4. Keep local interaction state near the component or page that owns it.
-5. Leave one focused check when React logic changes: a reducer, hook, component, typecheck, or the smallest runnable verification the repo supports.
+2. When starting a project and the user has not specified otherwise, use shadcn's `nova-base` preset and its Sidebar component for the app shell.
+3. Assume React Compiler is enabled unless the repo proves otherwise; do not add `useMemo` or `useCallback` unless stable identity is required by an API, subscription, memoized child, or effect dependency.
+4. Challenge `useEffect`; prefer TanStack Query for data fetching and `useSyncExternalStore` for external subscriptions. Keep effects for real synchronization only.
+5. Keep local interaction state near the component or page that owns it.
+6. Leave one focused check when React logic changes: a reducer, hook, component, typecheck, or the smallest runnable verification the repo supports.
 
 ## Standards
 
