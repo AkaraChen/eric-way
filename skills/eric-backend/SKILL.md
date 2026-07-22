@@ -1,6 +1,6 @@
 ---
 name: eric-backend
-description: Apply Eric's backend coding standards. Use when implementing, refactoring, or reviewing TypeScript or Rust backend code, service/repository boundaries, transport handlers, Hono/Elysia APIs, Drizzle schemas and migrations, Rust domain models, typed errors, validation, adapters, or backend tests in Eric's style.
+description: Apply Eric's backend coding standards. Use when implementing, refactoring, or reviewing TypeScript or Rust backend code, service/repository boundaries, transport handlers, Hono/Elysia APIs, Drizzle schemas and migrations, Node.js queues, Rust domain models, typed errors, validation, adapters, or backend tests in Eric's style.
 ---
 
 # Eric Backend
@@ -20,7 +20,7 @@ Use this skill for backend implementation or backend review.
 - Keep transport entrypoints thin: parse input, read state, call the service/core layer, and map the result.
 - Put validation at trust boundaries before data enters the core layer.
 - Prefer deterministic output when snapshots, generated contracts, or tests depend on ordering.
-- TypeScript: prefer Hono.js, use Elysia.js second, use Drizzle ORM and Drizzle migrations, and keep DTO/request/response types near the owner unless the repo has a shared contract layer.
+- TypeScript: prefer Hono.js, use Elysia.js second, use Drizzle ORM and Drizzle migrations, prefer BullMQ backed by Redis for queues in Node.js projects, and keep DTO/request/response types near the owner unless the repo has a shared contract layer.
 - Rust: model the domain with explicit structs, enums, state types, and ID newtypes; large modules are not allowed.
 - Rust: split modules by project scale and code relatedness: keep tightly coupled code together in small projects, then split by domain ownership or responsibility when a module mixes concepts, APIs, persistence, adapters, or state-machine concerns.
 - Rust: choose the necessary module shape: use sibling files for different domains, and use a directory with `mod.rs` when one domain owns multiple entities or submodules.
