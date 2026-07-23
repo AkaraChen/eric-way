@@ -16,6 +16,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [Browser E2E Testing](docs/testing/e2e.md)
 - [Review](docs/review.md)
 - [GitHub PR Review Operations](docs/gh-pr.md)
+- [UI](docs/ui.md)
 
 ## Skills
 
@@ -25,6 +26,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
+- [`eric-ui`](skills/eric-ui/SKILL.md)
 - [`eric-writing-tests`](skills/eric-writing-tests/SKILL.md)
 - [`eric-quality-control`](skills/eric-quality-control/SKILL.md)
 - [`eric-e2e-testing`](skills/eric-e2e-testing/SKILL.md)

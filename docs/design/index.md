@@ -9,8 +9,9 @@ Before designing anything, figure out whether you are building a **landing** (ma
 
 ## General
 
-1. Prefer toast for error feedback instead of creating inline error displays everywhere.
-2. For web apps and desktop apps built with web tech, use [`normalize.css`](./normalize.css) to disable vertical page overscroll at the document root.
+For web apps and desktop apps built with web tech, use
+[`normalize.css`](./normalize.css) to disable vertical page overscroll at the
+document root.
 
 ## Landing
 
