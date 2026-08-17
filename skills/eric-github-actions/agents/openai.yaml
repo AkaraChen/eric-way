@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric GitHub Actions"
+  short_description: "Create and validate current GitHub Actions workflows"
+  default_prompt: "Use $eric-github-actions to create or update this GitHub Actions workflow with verified current action versions and actionlint validation."
