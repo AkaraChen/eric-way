@@ -16,6 +16,15 @@ document root.
 ## Landing
 
 1. For titles, remember to apply text balance (e.g. `text-wrap: balance` / `text-balance`) so headings wrap evenly.
+2. For body paragraphs, use `text-wrap: pretty`. Do not put `balance` on long copy.
+
+## Craft
+
+Once the context and direction are decided, execute with the rules in
+[`craft.md`](./craft.md): tokens, anti-slop tells, concentric radii,
+interruptible motion, wrapping, favicon, and the finish checklist. Those rules
+are not a visual language — they sit on top of the project's design system or
+the Design DNA spec the user picked.
 
 ## UI
 

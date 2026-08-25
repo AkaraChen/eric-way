@@ -14,6 +14,12 @@ Before designing anything, figure out whether you are building a **landing** (ma
 ## Landing
 
 1. For titles, remember to apply text balance (e.g. `text-wrap: balance` / `text-balance`) so headings wrap evenly.
+2. For body paragraphs, use `text-wrap: pretty`. Do not put `balance` on long copy.
+
+## Craft
+
+Execute the chosen direction with [`design/craft.md`](./design/craft.md). Those
+rules are not a style of their own.
 
 ## UI
 
