@@ -6,6 +6,13 @@ capturing screenshots, or giving an agent a browser it can drive from shell
 commands. If `agent-browser` is available for this work, use it instead of
 Playwright.
 
+The agent is the QA. Do not hand visual confirmation back to the user. For
+visual UI work, open the page, capture a desktop width (~1280) and a mobile
+width (~390), and read both screenshots. HTTP 200 or a curl of the HTML is
+not a visual check. A landing page often needs only that dual-viewport smoke
+plus a screenshot read; deeper click tours are for flows that can break
+without looking broken.
+
 `agent-browser` is just a CLI around Chrome/Chromium, so it can run in Docker.
 That gives us a disposable and repeatable browser runtime for CI or agent runs.
 
