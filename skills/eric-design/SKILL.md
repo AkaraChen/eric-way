@@ -1,6 +1,6 @@
 ---
 name: eric-design
-description: Apply Eric's visual design standards and flair. Use when designing, implementing, or reviewing visual direction — landing pages, app styling, icons, typography, composition, motion, headings, page overscroll, or when choosing a direction from a design DNA spec in Eric's style. Use eric-ui separately for UI correctness, disclosure, and cognitive load.
+description: Apply Eric's visual design standards and flair. Use when designing, implementing, or reviewing visual direction — landing pages, app styling, icons, typography, composition, motion, headings, page overscroll, tokens, anti-slop, or when choosing a direction from a design DNA spec in Eric's style. Use eric-ui separately for UI correctness, disclosure, and cognitive load.
 ---
 
 # Eric Design
@@ -21,6 +21,10 @@ vendors copies under `references/`.
 5. For frontend implementation details (styling boundaries, class helpers, feature folders), also use `$eric-frontend`.
 6. When adding or reviewing UI, also use `$eric-ui` and read
    [`references/ui.md`](references/ui.md) before styling it.
+7. When implementing or reviewing visual styling, also read
+   [`references/craft.md`](references/craft.md): tokens, anti-slop tells,
+   concentric radii, interruptible motion, wrapping, favicon, and the finish
+   checklist. Look at the pixels in a browser before calling the work done.
 
 ## Picking a style
 
@@ -52,6 +56,7 @@ settle on one direction. Instead, show the options and let the user choose.
 ## Landing
 
 - Apply text balance to titles (`text-wrap: balance` / Tailwind `text-balance`) so headings wrap evenly.
+- Apply `text-wrap: pretty` to body paragraphs. Do not use `balance` on long copy.
 
 ## App visuals
 
@@ -59,6 +64,18 @@ settle on one direction. Instead, show the options and let the user choose.
 - Tabs include an icon to the left of the label; dialogs include an icon in the top-left.
 - Prefer Phosphor Icons, unless the project already has a default icon library — then use the project's default.
 - Phosphor variants: default to `regular`. Use `duotone` only for purely presentational, non-clickable, decorative icons (it has more visual depth). For action buttons such as edit or confirm, check the project's existing practice and use `regular` or `bold`.
+
+## Visual craft
+
+Execute the chosen direction with the rules in [`references/craft.md`](references/craft.md).
+Hard limits that always apply, even when a design system already exists:
+
+- Tokens, not ad-hoc hex or arbitrary values in JSX.
+- At most 3–5 colors and two font families; do not default to purple.
+- No emoji as icons; no gradient-blob fillers.
+- Nested rounded surfaces use concentric radii (`outer = inner + padding`).
+- Interactive motion uses named CSS transitions, never `transition: all`.
+- Hand-author the SVG favicon; do not generate it.
 
 ## Design DNA specs
 
@@ -75,3 +92,5 @@ When suggesting a design style or visual direction, list that folder, read the s
   `$eric-ui`.
 - Do not sacrifice app usability for visual flair; that trade is only allowed on landings.
 - Do not mix icon libraries or Phosphor variants arbitrarily within one surface.
+- Do not treat `references/craft.md` as a visual language; it is execution
+  rules on top of the chosen direction or existing system.

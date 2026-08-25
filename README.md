@@ -5,6 +5,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 ## Docs
 
 - [Backend](docs/backend.md)
+- [Design](docs/design/index.md)
 - [Desktop](docs/desktop.md)
 - [Frontend](docs/frontend.md)
 - [JavaScript](docs/javascript.md)
@@ -26,6 +27,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-backend`](skills/eric-backend/SKILL.md)
 - [`eric-desktop`](skills/eric-desktop/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
+- [`eric-design`](skills/eric-design/SKILL.md)
 - [`eric-ui`](skills/eric-ui/SKILL.md)
 - [`eric-writing-tests`](skills/eric-writing-tests/SKILL.md)
 - [`eric-quality-control`](skills/eric-quality-control/SKILL.md)
