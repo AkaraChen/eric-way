@@ -35,5 +35,7 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-github-pr`](skills/eric-github-pr/SKILL.md)
 - [`eric-github-actions`](skills/eric-github-actions/SKILL.md)
 - [`eric-grill`](skills/eric-grill/SKILL.md)
+- [`eric-working-with-issue`](skills/eric-working-with-issue/SKILL.md)
+- [`eric-working-with-opensource`](skills/eric-working-with-opensource/SKILL.md)
 
 Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies. Use repeated `--target <dir>/skills` flags to install into explicit project-local skill directories instead.
