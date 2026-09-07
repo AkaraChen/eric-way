@@ -81,6 +81,12 @@ Hard limits that always apply, even when a design system already exists:
 
 Design DNA profiles extracted from reference sites live under `references/spec/`, one JSON per site.
 
+- [Minshot](references/spec/minshot.json): quiet native-tool landing, 880px
+  single column, Chinese system typography, blue pill CTA, real screenshot and
+  stacked pricing panels. Use for concise desktop-utility marketing. Preserve
+  the Chinese locale's sans headings; screenshot materials are not page effects.
+  Unobserved app components and states must come from the destination system.
+
 When suggesting a design style or visual direction, list that folder, read the specs, and consider them as candidate directions — they are the starting shortlist for [Picking a style](#picking-a-style). When one is chosen, derive tokens and treatments from its JSON instead of inventing values.
 
 ## Boundaries
