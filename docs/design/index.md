@@ -18,6 +18,19 @@ document root.
 1. For titles, remember to apply text balance (e.g. `text-wrap: balance` / `text-balance`) so headings wrap evenly.
 2. For body paragraphs, use `text-wrap: pretty`. Do not put `balance` on long copy.
 
+## Design DNA references
+
+- [Minshot (Chinese landing)](./spec/minshot.json), extracted from
+  [minshot.fehey.com/zh](https://minshot.fehey.com/zh) on 2026-09-07:
+  a quiet native-tool landing with an 880px single column, cool near-white
+  surfaces, blue pill download buttons, a real product screenshot, plain feature
+  rows, and vertically stacked pricing cards. Chinese headings use system sans
+  (24px/500), not the serif declared for other locales. Suitable for concise
+  desktop-utility marketing; this is not a specification of the app's editor UI.
+  The JSON separates measured tokens, qualitative interpretation, and unobserved
+  states. Gradients and glass inside the screenshot are image content, not page
+  effects. The skill exposes the same profile through `references/spec/minshot.json`.
+
 ## Craft
 
 Once the context and direction are decided, execute with the rules in
