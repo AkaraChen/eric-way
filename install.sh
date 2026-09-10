@@ -26,7 +26,7 @@ if [[ ! -d "$source_dir" ]]; then
   die "Missing skills directory: $source_dir"
 fi
 
-removed_skills=(eric-guided-review)
+removed_skills=(eric-guided-review eric-quality-control eric-javascript-quality-control eric-rust-quality-control eric-python-quality-control kill-ai-slop native-feel-skill)
 
 if [[ -f "$repo_root/.gitmodules" ]] && command -v git >/dev/null 2>&1; then
   git -C "$repo_root" submodule update --init --recursive || die "Failed to initialize vendored skill submodules"

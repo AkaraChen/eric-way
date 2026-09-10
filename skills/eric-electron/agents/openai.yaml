@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Electron"
+  short_description: "Apply Electron browser and IPC conventions"
+  default_prompt: "Use $eric-electron for Electron selection, browser surfaces, and IPC."

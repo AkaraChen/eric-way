@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Domain Modeling"
+  short_description: "Model business states, rules, and side effects"
+  default_prompt: "Use $eric-domain-modeling for the relevant task: designing or reviewing business models, state machines, business rules, domain ownership, or side-effect boundaries in any language."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Rust Quality Control Checklist"
+  short_description: "Check Rust code and relevant risks before committing"
+  default_prompt: "Use $eric-rust-quality-control-checklist before creating this commit."

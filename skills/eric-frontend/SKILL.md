@@ -5,34 +5,15 @@ description: Apply Eric's frontend coding standards. Use when implementing, refa
 
 # Eric Frontend
 
-Use this skill for frontend implementation or frontend review. Keep the codebase's existing framework and component system.
+- Organize product code by feature slice; put reusable primitives, hooks, and utilities in shared locations.
+- Keep app entrypoints limited to providers, router, theme, toast, query client, and startup wiring.
+- Use TypeScript for application code; existing JavaScript config and scripts can stay JavaScript. Prefer specific types over `any`.
+- Split complex conditional rendering into smaller components.
+- Default to Tailwind CSS for new projects. Reserve global CSS for tokens, reset, fonts, third-party patches, and small shared animations.
+- Use the npm package `cn` to merge class names.
+- When i18n is configured, put user-visible copy through its translation resources and API.
+- Use TanStack Query for server state, including local service data. Keep requests, query keys, and invalidation in the request/cache layer. Follow `references/tanstack-query.md` for its structure.
+- Keep interaction state with its owning component. Persist UI preferences in a small store or local-storage wrapper, with clamping, sanitization, and migration where needed.
+- Test behavior independently of rendering where possible: stores, query keys, reducers, sorting, parsing, migrations, boundary inputs, async behavior, keyboard interactions, selection, and invalidation.
 
-## Workflow
-
-1. Inspect the existing frontend stack, folder layout, component system, styling setup, data-fetching layer, and test runner before changing code.
-2. For JavaScript, TypeScript, Node, package-manager, install, or script-runner work, also use `$eric-javascript`.
-3. For TanStack Query, request files, query keys, mutation options, or invalidation work, also read `references/tanstack-query.md`.
-4. If the task is React-specific, also use `$eric-react`.
-5. Keep changes local to the feature, shared primitive, request file, or store that already owns the behavior.
-6. Leave one focused check when logic changes: a narrow test, typecheck, lint, or the smallest runnable verification the repo supports.
-
-## Standards
-
-- Prefer feature folders for product code; put reusable primitives, hooks, and utilities under shared locations.
-- Keep app entrypoints thin: providers, router, theme, toast, query client, and startup wiring only.
-- Use TypeScript for application code unless the repo already uses JavaScript for config or scripts.
-- Use Tailwind utilities, component-system props, or existing UI primitives; keep global CSS for tokens, reset, fonts, third-party patches, and tiny shared animation utilities.
-- Do not manually concatenate class names with strings or template literals. First find the repo's existing helper around `clsx`, `classnames`, `cva`, `twMerge`, or similar packages; if none exists, call the package export directly.
-- When the project has i18n config, route user-visible UI copy through the existing translation resources/API instead of leaving hard-coded strings in components.
-- Keep page-specific or feature-specific business classes out of global CSS.
-- Treat non-trivial data as server state from the renderer's point of view, even when it is local.
-- Keep interaction state such as toast, navigation, panel state, form reset, selected rows, search text, filters, and dialogs near the owner component.
-- Put server state in TanStack Query; put persistent UI preferences in a small store or local storage wrapper with clamp, sanitize, and migration when needed.
-- Test logic that can break independently of rendering: stores, query keys, reducers, sorting, parsing, state migration, boundary inputs, async behavior, keyboard behavior, selection, and cache invalidation.
-
-## Boundaries
-
-- Do not invent a new design system when the repo already has one.
-- Do not move business/page styling into global CSS.
-- Do not hand-roll class name composition when the repo has a helper or installed package for it.
-- Do not put request functions, query keys, or invalidation logic inline in page components when the repo already has a request/cache layer.
+Use `$eric-react` for React conventions, `$eric-javascript` for package commands, and `$eric-writing-tests` for test selection.

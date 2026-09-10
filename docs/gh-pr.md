@@ -14,28 +14,7 @@ Use this as a folding primitive, not as a substitute for review. The reviewer or
 
 ### Query Changed Files
 
-```graphql
-query PullRequestFiles($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
-  repository(owner: $owner, name: $repo) {
-    pullRequest(number: $number) {
-      id
-      files(first: 100, after: $cursor) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        nodes {
-          path
-          additions
-          deletions
-          changeType
-          viewerViewedState
-        }
-      }
-    }
-  }
-}
-```
+See [the paginated GraphQL query](gh-pr-viewed-state.md#graphql).
 
 ### Select Files To Mark
 
@@ -58,39 +37,7 @@ Only mark a generated file after confirming it is mechanical output from a revie
 
 ### Mark One File
 
-```graphql
-mutation MarkFileAsViewed($pullRequestId: ID!, $path: String!) {
-  markFileAsViewed(input: { pullRequestId: $pullRequestId, path: $path }) {
-    pullRequest {
-      id
-    }
-  }
-}
-```
-
-With GitHub CLI:
-
-```bash
-gh api graphql \
-  -f query='mutation MarkFileAsViewed($pullRequestId: ID!, $path: String!) { markFileAsViewed(input: { pullRequestId: $pullRequestId, path: $path }) { pullRequest { id } } }' \
-  -f pullRequestId='PR_NODE_ID' \
-  -f path='tests/example.test.ts'
-```
-
-With Octokit core request:
-
-```ts
-await octokit.request("POST /graphql", {
-  query: `
-    mutation MarkFileAsViewed($pullRequestId: ID!, $path: String!) {
-      markFileAsViewed(input: { pullRequestId: $pullRequestId, path: $path }) {
-        pullRequest { id }
-      }
-    }
-  `,
-  variables: { pullRequestId, path },
-});
-```
+See [GraphQL, GitHub CLI, and Octokit examples](gh-pr-viewed-state.md#graphql).
 
 ### Execution Rule
 
@@ -102,9 +49,7 @@ await octokit.request("POST /graphql", {
 
 ## Accuracy Notes
 
-- The mutation input fields are `pullRequestId: ID!` and `path: String!`; this was verified against the live GitHub GraphQL schema with `gh api graphql`.
-- The operation changes the current viewer's file-viewed state. It does not approve the PR, submit a review, alter code, or remove the need to understand tests.
-- If GitHub rejects the token, use an authenticated token or app installation that can access the target PR and is allowed to update PR review UI state.
+See [viewed-state operation details](gh-pr-viewed-state.md#accuracy-notes).
 
 ## Sources
 

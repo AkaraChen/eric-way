@@ -1,4 +1,4 @@
 interface:
   display_name: "Eric Backend"
-  short_description: "Apply Eric's backend coding style"
-  default_prompt: "Use $eric-backend to implement or review backend code in Eric's style."
+  short_description: "Keep backend transport and service boundaries clear"
+  default_prompt: "Use $eric-backend for the relevant task: implementing or reviewing transport handlers, service/core boundaries, backend DTO ownership, input validation boundaries, or service bootstrap."

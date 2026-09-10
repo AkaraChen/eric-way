@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Rust"
+  short_description: "Apply Rust type, module, and library conventions"
+  default_prompt: "Use $eric-rust for the relevant task: implementing or reviewing Rust types, module structure, errors, validation, serialization, or generated data contracts in any application."

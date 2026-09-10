@@ -1,0 +1,1 @@
+../../../docs/gh-pr-viewed-state.md

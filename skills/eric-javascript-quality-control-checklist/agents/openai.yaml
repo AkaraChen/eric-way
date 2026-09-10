@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric JavaScript Quality Control Checklist"
+  short_description: "Check JavaScript and TypeScript before committing"
+  default_prompt: "Use $eric-javascript-quality-control-checklist before creating this commit."

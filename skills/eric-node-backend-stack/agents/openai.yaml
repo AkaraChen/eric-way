@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Node Backend Stack"
+  short_description: "Choose Node.js backend frameworks, databases, and queues"
+  default_prompt: "Use $eric-node-backend-stack to choose or review Node.js backend technologies."

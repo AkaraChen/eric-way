@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Quality Control Checklist"
+  short_description: "Verify pending changes before committing"
+  default_prompt: "Use $eric-quality-control-checklist before creating this commit."

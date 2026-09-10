@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Python Quality Control Checklist"
+  short_description: "Check Python code and relevant risks before committing"
+  default_prompt: "Use $eric-python-quality-control-checklist before creating this commit."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Eric Desktop"
-  short_description: "Apply Eric's desktop app style"
-  default_prompt: "Use $eric-desktop to implement or review desktop app code in Eric's style."
+  short_description: "Apply shared desktop app principles"
+  default_prompt: "Use $eric-desktop to implement or review shared desktop app behavior."

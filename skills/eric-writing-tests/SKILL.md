@@ -5,39 +5,14 @@ description: Apply Eric's test-writing standards. Use when deciding whether to a
 
 # Eric Writing Tests
 
-Use this skill for unit and integration test decisions. For stack-specific test code, also use the relevant Eric skill: `$eric-javascript`, `$eric-react`, `$eric-frontend`, `$eric-backend`, or `$eric-desktop`.
+- Before adding a test, check both: does the investment fit the product's stage and risk, and can the test catch a failure that matters? If either answer is no, explain why and skip it.
+- Test project-owned behavior, not trivial code or a copy of the implementation. Start from a bug, rule, or contract, never a coverage target.
+- Do not test a library's documented or expected behavior to guarantee the library itself works. Protect our integration, configuration, and business rules instead.
+- Prefer unit tests when they prove the behavior. Use integration tests when mocking collaborators would hide the risk.
+- Test public behavior; test private details only when they are the contract. Derive expected results from requirements, not current implementation output.
+- Cover business state transitions and data boundaries, including relevant empty, invalid, duplicate, out-of-order, permission-denied, and external-failure cases.
+- For regression tests, verify failure on the old code when inexpensive.
+- Keep setup small and each test's failure reason clear. Prefer one focused test over a broad suite.
+- Add fixtures, mocks, snapshots, or helpers only when they remove concrete repetition in the tests.
 
-## Global Gate
-
-Before writing or planning any test, answer two questions. If either answer is no, stop and say so instead of writing the test.
-
-1. Is this test suitable for the product? Match the test investment to what the product actually is: its stage (prototype vs production), its risk profile, its stack, and how the repo already tests. A throwaway spike, a demo, or generated glue code does not get the same treatment as a payment path or a shared library.
-2. Is it worth a test? The behavior must be able to break in a way that matters, and the test must be able to catch that break. If the code is trivial, the framework already guarantees it, or the test would only mirror the implementation, it is not worth a test.
-
-## Workflow
-
-1. Start from a bug, rule, contract, invariant, or product requirement. Do not start from coverage numbers.
-2. Decide what result the test protects:
-   - Regression lock: existing behavior mattered and must not change again after a bug fix, refactor, migration, or dependency upgrade.
-   - Correctness check: behavior is proved against a rule, contract, invariant, or requirement.
-3. Choose the lightest method that proves the result:
-   - Unit test: one unit's public behavior with collaborators controlled or replaced.
-   - Integration test: real collaboration between project-owned pieces, such as route plus service, service plus repo, parser plus serializer, or adapter plus local test double.
-4. Prefer a unit test when it proves the result. Use integration only when a unit test would fake away the risk.
-5. For regressions, make the test fail on the old code when that is cheap to do.
-6. Keep setup small. One test should fail for one clear reason.
-
-## Standards
-
-- Every test should explain which result it protects. If it cannot, skip it.
-- Test the public boundary. Private details are targets only when they are the real contract.
-- For correctness, include important adversarial cases: empty, missing, invalid, duplicate, out-of-order, permission-denied, or external-failure inputs.
-- Expected results should come from the rule or requirement, not copied from the current implementation output.
-- Do not add fixtures, mocks, snapshots, or helpers until they delete obvious repetition in the current tests.
-- Do not add broad suites when one focused test locks the behavior.
-
-## Boundaries
-
-- This skill covers unit and integration tests, not browser end-to-end tests. Use `$eric-e2e-testing` for real browser flows.
-- Do not write tests only to satisfy a coverage target.
-- Do not test private implementation details when public behavior exposes the same risk.
+Use `$eric-e2e-testing` for real browser flows.

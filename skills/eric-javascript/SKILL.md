@@ -5,10 +5,5 @@ description: Apply Eric's JavaScript and TypeScript standards. Use when creating
 
 # Eric JavaScript
 
-Use this skill for JavaScript, TypeScript, Node, frontend, backend, desktop renderer, or review work that touches package managers, dependency installation, or package scripts.
-
-## Standards
-
-1. New projects should default to the latest pnpm.
-2. Existing projects must use Antfu's `ni` as the npm replacement.
-3. Never hand-write package-manager commands when `ni` can infer the project's package manager.
+- Default to the latest Bun for new projects.
+- In existing projects, use Antfu's `ni` tools to install dependencies and run scripts with the project's package manager.
