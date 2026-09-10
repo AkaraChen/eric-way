@@ -2,10 +2,13 @@
 
 Code style notes and Codex skills for Eric's preferred way of building software.
 
+`eric-design`, `eric-ui`, and their vendored `design-dna` dependency have moved
+to the sibling `eric-design-skill` repository. References to these skills in
+review and browser-testing guidance refer to that companion repository.
+
 ## Docs
 
 - [Backend](docs/backend.md)
-- [Design](docs/design/index.md)
 - [Desktop](docs/desktop.md)
 - [Frontend](docs/frontend.md)
 - [JavaScript](docs/javascript.md)
@@ -17,7 +20,6 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [Browser E2E Testing](docs/testing/e2e.md)
 - [Review](docs/review.md)
 - [GitHub PR Review Operations](docs/gh-pr.md)
-- [UI](docs/ui.md)
 
 ## Skills
 
@@ -32,8 +34,6 @@ Code style notes and Codex skills for Eric's preferred way of building software.
 - [`eric-tauri`](skills/eric-tauri/SKILL.md)
 - [`eric-electron`](skills/eric-electron/SKILL.md)
 - [`eric-review`](skills/eric-review/SKILL.md)
-- [`eric-design`](skills/eric-design/SKILL.md)
-- [`eric-ui`](skills/eric-ui/SKILL.md)
 - [`eric-writing-tests`](skills/eric-writing-tests/SKILL.md)
 - [`eric-quality-control-checklist`](skills/eric-quality-control-checklist/SKILL.md)
 - [`eric-javascript-quality-control-checklist`](skills/eric-javascript-quality-control-checklist/SKILL.md)
