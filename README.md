@@ -45,5 +45,6 @@ review and browser-testing guidance refer to that companion repository.
 - [`eric-grill`](skills/eric-grill/SKILL.md)
 - [`eric-working-with-issue`](skills/eric-working-with-issue/SKILL.md)
 - [`eric-working-with-opensource`](skills/eric-working-with-opensource/SKILL.md)
+- [`eric-working-with-repo`](skills/eric-working-with-repo/SKILL.md)
 
 Run `./install.sh` to replace the matching global Codex and Claude Code skills with the repo copies. Use repeated `--target <dir>/skills` flags to install into explicit project-local skill directories instead.
