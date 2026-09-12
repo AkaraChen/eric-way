@@ -11,4 +11,6 @@ Find the repo before doing anything else.
 - If it is not local, search GitHub. Check personal repos first; there are many.
 - Then check organization repos.
 - Clone a remote match into `~/Developer`.
+- A brand-new repo starts in `~/Developer` too, not in the current working directory.
+- When the work runs through paseo, register the new project with `paseo project create <path>`.
 - If the user says this is one-off, just use it once, or similar, clone into `/tmp` instead.
