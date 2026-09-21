@@ -1,0 +1,19 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "description": "Shared desktop application principles for Electron and Tauri apps.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "desktop",
+    "electron",
+    "tauri",
+    "webview",
+    "ipc"
+  ],
+  "displayName": "Eric Desktop"
+}

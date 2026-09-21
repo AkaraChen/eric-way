@@ -1,0 +1,19 @@
+{
+  "name": "global",
+  "version": "0.1.0",
+  "description": "Eric's always-on working rules: finding the right repository, issue and sub-issue hygiene, open-source conduct, and plan grilling.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "workflow",
+    "github",
+    "issues",
+    "opensource",
+    "planning"
+  ],
+  "displayName": "Eric Global"
+}

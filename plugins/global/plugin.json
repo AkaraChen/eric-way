@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "global",
+  "version": "0.1.0",
+  "description": "Eric's always-on working rules: finding the right repository, issue and sub-issue hygiene, open-source conduct, and plan grilling.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "workflow",
+    "github",
+    "issues",
+    "opensource",
+    "planning"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Eric Global",
+        "shortDescription": "Always-on working rules",
+        "longDescription": "Use Eric Global in every session, whatever the project. It covers locating or cloning the right repository before starting, keeping one outcome per GitHub issue and splitting independently deliverable parts, minimizing maintainer disturbance when contributing to projects Eric does not lead, and stress-testing a plan before any code is written.",
+        "developerName": "AkaraChen",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/AkaraChen/eric-way",
+        "defaultPrompt": [
+          "Use $repo to find or clone the right repository before starting.",
+          "Use $grill to interrogate this plan before we build it."
+        ]
+      }
+    }
+  }
+}

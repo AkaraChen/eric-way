@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric JS"
+  short_description: "JS/TS standards and commit checklist"
+  default_prompt: "Use $javascript when creating or working in a JS/TS project."

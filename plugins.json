@@ -1,0 +1,210 @@
+{
+  "marketplace": {
+    "name": "eric-way",
+    "displayName": "Eric Way",
+    "description": "Eric's agent workflow: skills packaged as installable plugins",
+    "version": "0.1.0",
+    "owner": {
+      "name": "AkaraChen",
+      "url": "https://github.com/AkaraChen"
+    },
+    "homepage": "https://github.com/AkaraChen/eric-way",
+    "repository": "https://github.com/AkaraChen/eric-way"
+  },
+  "scenarios": {
+    "frontend": {
+      "description": "TS/JS web or app frontend",
+      "plugins": ["project", "js", "frontend"]
+    },
+    "backend": {
+      "description": "TS/JS backend service",
+      "plugins": ["project", "js", "backend"]
+    },
+    "tauri": {
+      "description": "Tauri desktop app",
+      "plugins": ["project", "js", "frontend", "desktop", "tauri", "rust"]
+    },
+    "electron": {
+      "description": "Electron desktop app",
+      "plugins": ["project", "js", "frontend", "desktop", "electron"]
+    },
+    "rust": {
+      "description": "Rust CLI or library",
+      "plugins": ["project", "rust"]
+    },
+    "python": {
+      "description": "Python script or service",
+      "plugins": ["project", "python"]
+    },
+    "review": {
+      "description": "Reviewing someone else's PR",
+      "plugins": ["project", "review"]
+    }
+  },
+  "plugins": [
+    {
+      "name": "global",
+      "scope": "user",
+      "version": "0.1.0",
+      "displayName": "Eric Global",
+      "description": "Eric's always-on working rules: finding the right repository, issue and sub-issue hygiene, open-source conduct, and plan grilling.",
+      "shortDescription": "Always-on working rules",
+      "longDescription": "Use Eric Global in every session, whatever the project. It covers locating or cloning the right repository before starting, keeping one outcome per GitHub issue and splitting independently deliverable parts, minimizing maintainer disturbance when contributing to projects Eric does not lead, and stress-testing a plan before any code is written.",
+      "category": "Developer Tools",
+      "keywords": ["workflow", "github", "issues", "opensource", "planning"],
+      "skills": ["repo", "issue", "opensource", "grill"],
+      "defaultPrompt": [
+        "Use $repo to find or clone the right repository before starting.",
+        "Use $grill to interrogate this plan before we build it."
+      ]
+    },
+    {
+      "name": "project",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Project",
+      "description": "Cross-language project standards: domain modeling, GitHub Actions hygiene, test judgment, and the pre-commit gate.",
+      "shortDescription": "Per-project standards and commit gate",
+      "longDescription": "Use Eric Project in any repository where Eric writes code. It carries the language-agnostic rules that apply to the project itself: modeling business state, ownership, and side-effect boundaries; keeping GitHub Actions pinned to verified releases and lint-clean; deciding which behavior actually deserves a test; and running the repository's own checks before committing.",
+      "category": "Developer Tools",
+      "keywords": ["domain-modeling", "github-actions", "testing", "quality-control"],
+      "skills": ["domain-modeling", "github-actions", "writing-tests", "checklist"],
+      "defaultPrompt": [
+        "Use $checklist before creating this commit.",
+        "Use $writing-tests to decide which behavior needs testing."
+      ]
+    },
+    {
+      "name": "js",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric JS",
+      "description": "Eric's JavaScript and TypeScript standards plus the pre-commit checklist for JS/TS changes.",
+      "shortDescription": "JS/TS standards and commit checklist",
+      "longDescription": "Use Eric JS in any JavaScript or TypeScript project. It covers package-manager and tooling defaults, and the pre-commit checklist for formatting, linting, type checking, tests, and unused code.",
+      "category": "Developer Tools",
+      "keywords": ["javascript", "typescript", "node", "tooling", "checklist"],
+      "skills": ["javascript", "js-checklist"],
+      "defaultPrompt": [
+        "Use $javascript when creating or working in a JS/TS project.",
+        "Run $js-checklist before committing these TypeScript changes."
+      ]
+    },
+    {
+      "name": "rust",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Rust",
+      "description": "Eric's Rust standards plus the pre-commit checklist for Rust changes.",
+      "shortDescription": "Rust standards and commit checklist",
+      "longDescription": "Use Eric Rust in any Rust project. It covers data shapes, module structure, error handling, validation, and generated contracts, plus the pre-commit checklist for fmt, check, Clippy, tests, and dependency audits.",
+      "category": "Developer Tools",
+      "keywords": ["rust", "cargo", "clippy", "checklist"],
+      "skills": ["rust", "rust-checklist"],
+      "defaultPrompt": [
+        "Use $rust when implementing or reviewing Rust code.",
+        "Run $rust-checklist before committing these Rust changes."
+      ]
+    },
+    {
+      "name": "python",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Python",
+      "description": "Eric's pre-commit checklist for Python changes.",
+      "shortDescription": "Python commit checklist",
+      "longDescription": "Use Eric Python in any Python project. It covers the pre-commit checklist for formatting, linting, type checking, tests, and dependency or security audits.",
+      "category": "Developer Tools",
+      "keywords": ["python", "ruff", "pytest", "checklist"],
+      "skills": ["python-checklist"],
+      "defaultPrompt": ["Run $python-checklist before committing these Python changes."]
+    },
+    {
+      "name": "frontend",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Frontend",
+      "description": "Eric's frontend and React standards for TS/JS UI work, plus browser end-to-end testing.",
+      "shortDescription": "Frontend, React, and browser E2E",
+      "longDescription": "Use Eric Frontend for TS/JS user interfaces. It covers feature-slice structure, styling boundaries, server-state and interaction-state ownership, React component conventions, and browser end-to-end verification with screenshots and real interaction checks.",
+      "category": "Developer Tools",
+      "keywords": ["frontend", "react", "tailwind", "tanstack-query", "e2e"],
+      "skills": ["frontend", "react", "e2e-testing"],
+      "defaultPrompt": [
+        "Use $frontend to implement this UI in Eric's style.",
+        "Use $react for this component's hooks and props."
+      ]
+    },
+    {
+      "name": "backend",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Backend",
+      "description": "Eric's backend service boundaries and Node.js stack choices.",
+      "shortDescription": "Backend boundaries and Node stack",
+      "longDescription": "Use Eric Backend for server-side services. It covers thin transport handlers, service/core ownership, DTO placement, validation boundaries, bootstrap wiring, and the preferred Node.js stack for APIs, databases, migrations, and background jobs.",
+      "category": "Developer Tools",
+      "keywords": ["backend", "node", "hono", "drizzle", "bullmq"],
+      "skills": ["backend", "node-backend-stack"],
+      "defaultPrompt": [
+        "Use $backend to implement or review this service boundary.",
+        "Use $node-backend-stack when picking backend libraries."
+      ]
+    },
+    {
+      "name": "desktop",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Desktop",
+      "description": "Shared desktop application principles for Electron and Tauri apps.",
+      "shortDescription": "Shared desktop app principles",
+      "longDescription": "Use Eric Desktop in any desktop app, Electron or Tauri. It covers local storage and migrations, cross-service and cross-language contracts, treating local service data as server state in the renderer, navigation and external-link handling, and preferring framework or OS primitives.",
+      "category": "Developer Tools",
+      "keywords": ["desktop", "electron", "tauri", "webview", "ipc"],
+      "skills": ["desktop"],
+      "defaultPrompt": ["Use $desktop for the shared desktop principles in this app."]
+    },
+    {
+      "name": "tauri",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Tauri",
+      "description": "Tauri v2 conventions: command responsiveness, async execution, and generated frontend contracts.",
+      "shortDescription": "Tauri v2 conventions",
+      "longDescription": "Use Eric Tauri in Tauri v2 apps. It covers choosing Tauri, assessing a command's duration and blocking work before deciding sync or async, moving blocking I/O or CPU work off the async runtime, and generating frontend command contracts.",
+      "category": "Developer Tools",
+      "keywords": ["tauri", "rust", "async", "typegen"],
+      "skills": ["tauri"],
+      "defaultPrompt": ["Use $tauri for this Tauri command's responsiveness and contracts."]
+    },
+    {
+      "name": "electron",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Electron",
+      "description": "Electron conventions: browser surfaces, Node integration, and IPC.",
+      "shortDescription": "Electron conventions",
+      "longDescription": "Use Eric Electron in Electron apps. It covers when Electron is the right choice over a thin WebView, browser surface ownership, Node integration, and the preferred IPC toolkit.",
+      "category": "Developer Tools",
+      "keywords": ["electron", "ipc", "tipc", "node"],
+      "skills": ["electron"],
+      "defaultPrompt": ["Use $electron for Electron selection, browser surfaces, and IPC."]
+    },
+    {
+      "name": "review",
+      "scope": "project",
+      "version": "0.1.0",
+      "displayName": "Eric Review",
+      "description": "Review code against Eric's standards, prepare GitHub pull requests for review, and produce Guided Review walkthroughs.",
+      "shortDescription": "Code review and Guided Review",
+      "longDescription": "Use Eric Review when judging code. It covers concrete findings ordered by severity, implementation degradation and overengineering, GitHub pull request viewed-state mechanics for focusing the changed-files view, and Guided Review artifacts with a reading order, line map, risk focus, and verification focus backed by code evidence.",
+      "category": "Developer Tools",
+      "keywords": ["review", "pull-request", "github", "guided-review"],
+      "skills": ["review", "github-pr", "guided-review"],
+      "defaultPrompt": [
+        "Use $review to review this change against Eric's standards.",
+        "Use $guided-review to produce a walkthrough of this pull request."
+      ]
+    }
+  ]
+}

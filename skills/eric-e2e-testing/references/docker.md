@@ -1,1 +1,0 @@
-../../../docs/testing/e2e-docker.md

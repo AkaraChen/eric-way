@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Fallback installer.
+#
+# Prefer the plugin marketplace when the host supports it:
+#   claude /plugin marketplace add AkaraChen/eric-way
+#   codex  codex plugin marketplace add AkaraChen/eric-way
+#   cursor cursor-agent --plugin-dir <plugin dir>
+#
+# This script exists for hosts that only read a plain skills directory
+# (opencode, amp, kimi, ...). It mirrors plugins/*/skills/* into a target
+# skills directory. The plugin sources stay the single source of truth.
+
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source_dir="$repo_root/skills"
+plugins_root="$repo_root/plugins"
 
 usage() {
   cat <<'EOF'
 Usage: ./install.sh [--target DIR]...
+
+Mirrors plugins/*/skills/* into a plain skills directory, for hosts that do not
+support plugin marketplaces. Use the marketplace instead when you can.
 
 Without --target:
   Codex: ${CODEX_HOME:-$HOME/.codex}/skills
@@ -22,11 +36,9 @@ die() {
   exit 1
 }
 
-if [[ ! -d "$source_dir" ]]; then
-  die "Missing skills directory: $source_dir"
+if [[ ! -d "$plugins_root" ]]; then
+  die "Missing plugins directory: $plugins_root"
 fi
-
-removed_skills=(eric-guided-review eric-quality-control eric-javascript-quality-control eric-rust-quality-control eric-python-quality-control kill-ai-slop native-feel-skill)
 
 if [[ -f "$repo_root/.gitmodules" ]] && command -v git >/dev/null 2>&1; then
   git -C "$repo_root" submodule update --init --recursive || die "Failed to initialize vendored skill submodules"
@@ -73,7 +85,7 @@ if [[ "${#targets[@]}" -eq 0 ]]; then
   add_target "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills"
 fi
 
-source_real="$(cd "$source_dir" && pwd -P)"
+source_real="$(cd "$plugins_root" && pwd -P)"
 installed=0
 
 safe_target_real() {
@@ -93,11 +105,11 @@ safe_target_real() {
   target_real="$(cd "$target_path" && pwd -P)"
 
   [[ "$(basename "$target_real")" == "skills" ]] || die "Refusing unsafe target (resolved path is not /skills): $target"
-  [[ "$target_real" != "$source_real" ]] || die "Refusing to install into source directory: $target"
+  [[ "$target_real" != "$source_real" ]] || die "Refusing to install into the source plugins directory: $target"
   [[ "$target_real" != "$repo_root" ]] || die "Refusing to install into repo root: $target"
   [[ "$target_real" != "$HOME" ]] || die "Refusing to install into HOME: $target"
   [[ "$target_real" != "$HOME/skills" ]] || die "Refusing to install into HOME/skills: $target"
-  [[ "$target_real" != "/skills" ]] || die "Refusing to install into /skills"
+  [[ "$target_real" != "/skills" ]] || die "Refusing to install into /skills: $target"
 
   printf '%s\n' "$target_real"
 }
@@ -118,14 +130,7 @@ for target in "${targets[@]}"; do
 done
 
 for target in "${resolved_targets[@]}"; do
-  for name in "${removed_skills[@]}"; do
-    if [[ -e "$target/$name" ]]; then
-      rm -rf -- "${target:?}/$name"
-      echo "Removed $name from $target"
-    fi
-  done
-
-  for skill in "$source_dir"/*; do
+  for skill in "$plugins_root"/*/skills/*; do
     [[ -f "$skill/SKILL.md" ]] || continue
 
     name="$(basename "$skill")"
@@ -143,5 +148,5 @@ for target in "${resolved_targets[@]}"; do
 done
 
 if [[ "$installed" -eq 0 ]]; then
-  die "No skills installed from $source_dir"
+  die "No skills installed from $plugins_root"
 fi

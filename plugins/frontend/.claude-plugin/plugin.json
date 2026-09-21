@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "description": "Eric's frontend and React standards for TS/JS UI work, plus browser end-to-end testing.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "frontend",
+    "react",
+    "tailwind",
+    "tanstack-query",
+    "e2e"
+  ],
+  "displayName": "Eric Frontend"
+}

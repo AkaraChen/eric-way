@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Frontend"
+  short_description: "Frontend, React, and browser E2E"
+  default_prompt: "Use $frontend to implement this UI in Eric's style."

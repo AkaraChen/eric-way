@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Backend"
+  short_description: "Keep backend transport and service boundaries clear"
+  default_prompt: "Use $backend for the relevant task: implementing or reviewing transport handlers, service/core boundaries, backend DTO ownership, input validation boundaries, or service bootstrap."

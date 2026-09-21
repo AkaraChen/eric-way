@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rust",
+  "version": "0.1.0",
+  "description": "Eric's Rust standards plus the pre-commit checklist for Rust changes.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "rust",
+    "cargo",
+    "clippy",
+    "checklist"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Eric Rust",
+        "shortDescription": "Rust standards and commit checklist",
+        "longDescription": "Use Eric Rust in any Rust project. It covers data shapes, module structure, error handling, validation, and generated contracts, plus the pre-commit checklist for fmt, check, Clippy, tests, and dependency audits.",
+        "developerName": "AkaraChen",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/AkaraChen/eric-way",
+        "defaultPrompt": [
+          "Use $rust when implementing or reviewing Rust code.",
+          "Run $rust-checklist before committing these Rust changes."
+        ]
+      }
+    }
+  }
+}

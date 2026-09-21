@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Frontend"
+  short_description: "Apply Eric's frontend coding style"
+  default_prompt: "Use $frontend to implement or review frontend code in Eric's style."

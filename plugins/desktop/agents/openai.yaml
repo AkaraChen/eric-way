@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Desktop"
+  short_description: "Shared desktop app principles"
+  default_prompt: "Use $desktop for the shared desktop principles in this app."

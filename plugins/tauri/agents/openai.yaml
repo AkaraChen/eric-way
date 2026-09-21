@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Tauri"
+  short_description: "Tauri v2 conventions"
+  default_prompt: "Use $tauri for this Tauri command's responsiveness and contracts."

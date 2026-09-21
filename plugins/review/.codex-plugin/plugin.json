@@ -1,0 +1,34 @@
+{
+  "name": "review",
+  "version": "0.1.0",
+  "description": "Review code against Eric's standards, prepare GitHub pull requests for review, and produce Guided Review walkthroughs.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "review",
+    "pull-request",
+    "github",
+    "guided-review"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Review",
+    "shortDescription": "Code review and Guided Review",
+    "longDescription": "Use Eric Review when judging code. It covers concrete findings ordered by severity, implementation degradation and overengineering, GitHub pull request viewed-state mechanics for focusing the changed-files view, and Guided Review artifacts with a reading order, line map, risk focus, and verification focus backed by code evidence.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $review to review this change against Eric's standards.",
+      "Use $guided-review to produce a walkthrough of this pull request."
+    ]
+  }
+}

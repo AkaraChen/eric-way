@@ -1,0 +1,19 @@
+{
+  "name": "js",
+  "version": "0.1.0",
+  "description": "Eric's JavaScript and TypeScript standards plus the pre-commit checklist for JS/TS changes.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "node",
+    "tooling",
+    "checklist"
+  ],
+  "displayName": "Eric JS"
+}

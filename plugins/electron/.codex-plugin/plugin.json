@@ -1,0 +1,33 @@
+{
+  "name": "electron",
+  "version": "0.1.0",
+  "description": "Electron conventions: browser surfaces, Node integration, and IPC.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "electron",
+    "ipc",
+    "tipc",
+    "node"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Electron",
+    "shortDescription": "Electron conventions",
+    "longDescription": "Use Eric Electron in Electron apps. It covers when Electron is the right choice over a thin WebView, browser surface ownership, Node integration, and the preferred IPC toolkit.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $electron for Electron selection, browser surfaces, and IPC."
+    ]
+  }
+}
