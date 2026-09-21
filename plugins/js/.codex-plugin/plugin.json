@@ -1,0 +1,35 @@
+{
+  "name": "js",
+  "version": "0.1.0",
+  "description": "Eric's JavaScript and TypeScript standards plus the pre-commit checklist for JS/TS changes.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "node",
+    "tooling",
+    "checklist"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric JS",
+    "shortDescription": "JS/TS standards and commit checklist",
+    "longDescription": "Use Eric JS in any JavaScript or TypeScript project. It covers package-manager and tooling defaults, and the pre-commit checklist for formatting, linting, type checking, tests, and unused code.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $javascript when creating or working in a JS/TS project.",
+      "Run $js-checklist before committing these TypeScript changes."
+    ]
+  }
+}

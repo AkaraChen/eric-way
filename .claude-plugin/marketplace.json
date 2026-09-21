@@ -1,0 +1,227 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "eric-way",
+  "owner": {
+    "name": "AkaraChen"
+  },
+  "metadata": {
+    "description": "Eric's agent workflow: skills packaged as installable plugins",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "global",
+      "source": "./plugins/global",
+      "description": "Eric's always-on working rules: finding the right repository, issue and sub-issue hygiene, open-source conduct, and plan grilling.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "workflow",
+        "github",
+        "issues",
+        "opensource",
+        "planning"
+      ]
+    },
+    {
+      "name": "project",
+      "source": "./plugins/project",
+      "description": "Cross-language project standards: domain modeling, GitHub Actions hygiene, test judgment, and the pre-commit gate.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "domain-modeling",
+        "github-actions",
+        "testing",
+        "quality-control"
+      ]
+    },
+    {
+      "name": "js",
+      "source": "./plugins/js",
+      "description": "Eric's JavaScript and TypeScript standards plus the pre-commit checklist for JS/TS changes.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "javascript",
+        "typescript",
+        "node",
+        "tooling",
+        "checklist"
+      ]
+    },
+    {
+      "name": "rust",
+      "source": "./plugins/rust",
+      "description": "Eric's Rust standards plus the pre-commit checklist for Rust changes.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "rust",
+        "cargo",
+        "clippy",
+        "checklist"
+      ]
+    },
+    {
+      "name": "python",
+      "source": "./plugins/python",
+      "description": "Eric's pre-commit checklist for Python changes.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "python",
+        "ruff",
+        "pytest",
+        "checklist"
+      ]
+    },
+    {
+      "name": "frontend",
+      "source": "./plugins/frontend",
+      "description": "Eric's frontend and React standards for TS/JS UI work, plus browser end-to-end testing.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "frontend",
+        "react",
+        "tailwind",
+        "tanstack-query",
+        "e2e"
+      ]
+    },
+    {
+      "name": "backend",
+      "source": "./plugins/backend",
+      "description": "Eric's backend service boundaries and Node.js stack choices.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "backend",
+        "node",
+        "hono",
+        "drizzle",
+        "bullmq"
+      ]
+    },
+    {
+      "name": "desktop",
+      "source": "./plugins/desktop",
+      "description": "Shared desktop application principles for Electron and Tauri apps.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "desktop",
+        "electron",
+        "tauri",
+        "webview",
+        "ipc"
+      ]
+    },
+    {
+      "name": "tauri",
+      "source": "./plugins/tauri",
+      "description": "Tauri v2 conventions: command responsiveness, async execution, and generated frontend contracts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "tauri",
+        "rust",
+        "async",
+        "typegen"
+      ]
+    },
+    {
+      "name": "electron",
+      "source": "./plugins/electron",
+      "description": "Electron conventions: browser surfaces, Node integration, and IPC.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "electron",
+        "ipc",
+        "tipc",
+        "node"
+      ]
+    },
+    {
+      "name": "review",
+      "source": "./plugins/review",
+      "description": "Review code against Eric's standards, prepare GitHub pull requests for review, and produce Guided Review walkthroughs.",
+      "version": "0.1.0",
+      "author": {
+        "name": "AkaraChen",
+        "url": "https://github.com/AkaraChen"
+      },
+      "homepage": "https://github.com/AkaraChen/eric-way",
+      "repository": "https://github.com/AkaraChen/eric-way",
+      "category": "Developer Tools",
+      "keywords": [
+        "review",
+        "pull-request",
+        "github",
+        "guided-review"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Global"
+  short_description: "Always-on working rules"
+  default_prompt: "Use $repo to find or clone the right repository before starting."

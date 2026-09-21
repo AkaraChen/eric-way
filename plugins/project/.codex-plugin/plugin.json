@@ -1,0 +1,34 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "description": "Cross-language project standards: domain modeling, GitHub Actions hygiene, test judgment, and the pre-commit gate.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "domain-modeling",
+    "github-actions",
+    "testing",
+    "quality-control"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Project",
+    "shortDescription": "Per-project standards and commit gate",
+    "longDescription": "Use Eric Project in any repository where Eric writes code. It carries the language-agnostic rules that apply to the project itself: modeling business state, ownership, and side-effect boundaries; keeping GitHub Actions pinned to verified releases and lint-clean; deciding which behavior actually deserves a test; and running the repository's own checks before committing.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $checklist before creating this commit.",
+      "Use $writing-tests to decide which behavior needs testing."
+    ]
+  }
+}

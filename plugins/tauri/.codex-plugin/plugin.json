@@ -1,0 +1,33 @@
+{
+  "name": "tauri",
+  "version": "0.1.0",
+  "description": "Tauri v2 conventions: command responsiveness, async execution, and generated frontend contracts.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "tauri",
+    "rust",
+    "async",
+    "typegen"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Tauri",
+    "shortDescription": "Tauri v2 conventions",
+    "longDescription": "Use Eric Tauri in Tauri v2 apps. It covers choosing Tauri, assessing a command's duration and blocking work before deciding sync or async, moving blocking I/O or CPU work off the async runtime, and generating frontend command contracts.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $tauri for this Tauri command's responsiveness and contracts."
+    ]
+  }
+}

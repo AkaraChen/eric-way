@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "description": "Eric's backend service boundaries and Node.js stack choices.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "backend",
+    "node",
+    "hono",
+    "drizzle",
+    "bullmq"
+  ],
+  "displayName": "Eric Backend"
+}

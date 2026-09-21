@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Review"
+  short_description: "Code review and Guided Review"
+  default_prompt: "Use $review to review this change against Eric's standards."

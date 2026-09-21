@@ -1,0 +1,34 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "description": "Shared desktop application principles for Electron and Tauri apps.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "desktop",
+    "electron",
+    "tauri",
+    "webview",
+    "ipc"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Desktop",
+    "shortDescription": "Shared desktop app principles",
+    "longDescription": "Use Eric Desktop in any desktop app, Electron or Tauri. It covers local storage and migrations, cross-service and cross-language contracts, treating local service data as server state in the renderer, navigation and external-link handling, and preferring framework or OS primitives.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $desktop for the shared desktop principles in this app."
+    ]
+  }
+}

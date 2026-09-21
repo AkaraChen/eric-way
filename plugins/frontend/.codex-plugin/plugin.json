@@ -1,0 +1,35 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "description": "Eric's frontend and React standards for TS/JS UI work, plus browser end-to-end testing.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "frontend",
+    "react",
+    "tailwind",
+    "tanstack-query",
+    "e2e"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Eric Frontend",
+    "shortDescription": "Frontend, React, and browser E2E",
+    "longDescription": "Use Eric Frontend for TS/JS user interfaces. It covers feature-slice structure, styling boundaries, server-state and interaction-state ownership, React component conventions, and browser end-to-end verification with screenshots and real interaction checks.",
+    "developerName": "AkaraChen",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/AkaraChen/eric-way",
+    "defaultPrompt": [
+      "Use $frontend to implement this UI in Eric's style.",
+      "Use $react for this component's hooks and props."
+    ]
+  }
+}

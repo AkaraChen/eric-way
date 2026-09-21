@@ -1,0 +1,37 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "python",
+  "version": "0.1.0",
+  "description": "Eric's pre-commit checklist for Python changes.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "python",
+    "ruff",
+    "pytest",
+    "checklist"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Eric Python",
+        "shortDescription": "Python commit checklist",
+        "longDescription": "Use Eric Python in any Python project. It covers the pre-commit checklist for formatting, linting, type checking, tests, and dependency or security audits.",
+        "developerName": "AkaraChen",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/AkaraChen/eric-way",
+        "defaultPrompt": [
+          "Run $python-checklist before committing these Python changes."
+        ]
+      }
+    }
+  }
+}

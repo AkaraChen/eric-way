@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Project"
+  short_description: "Per-project standards and commit gate"
+  default_prompt: "Use $checklist before creating this commit."

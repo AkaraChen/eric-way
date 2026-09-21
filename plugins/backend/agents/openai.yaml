@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Backend"
+  short_description: "Backend boundaries and Node stack"
+  default_prompt: "Use $backend to implement or review this service boundary."

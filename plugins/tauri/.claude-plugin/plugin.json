@@ -1,0 +1,18 @@
+{
+  "name": "tauri",
+  "version": "0.1.0",
+  "description": "Tauri v2 conventions: command responsiveness, async execution, and generated frontend contracts.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "tauri",
+    "rust",
+    "async",
+    "typegen"
+  ],
+  "displayName": "Eric Tauri"
+}

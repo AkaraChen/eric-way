@@ -1,0 +1,18 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "description": "Cross-language project standards: domain modeling, GitHub Actions hygiene, test judgment, and the pre-commit gate.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "domain-modeling",
+    "github-actions",
+    "testing",
+    "quality-control"
+  ],
+  "displayName": "Eric Project"
+}

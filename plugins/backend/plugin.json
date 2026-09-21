@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "backend",
+  "version": "0.1.0",
+  "description": "Eric's backend service boundaries and Node.js stack choices.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "backend",
+    "node",
+    "hono",
+    "drizzle",
+    "bullmq"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Eric Backend",
+        "shortDescription": "Backend boundaries and Node stack",
+        "longDescription": "Use Eric Backend for server-side services. It covers thin transport handlers, service/core ownership, DTO placement, validation boundaries, bootstrap wiring, and the preferred Node.js stack for APIs, databases, migrations, and background jobs.",
+        "developerName": "AkaraChen",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/AkaraChen/eric-way",
+        "defaultPrompt": [
+          "Use $backend to implement or review this service boundary.",
+          "Use $node-backend-stack when picking backend libraries."
+        ]
+      }
+    }
+  }
+}

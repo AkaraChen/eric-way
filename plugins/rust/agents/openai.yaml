@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Rust"
+  short_description: "Rust standards and commit checklist"
+  default_prompt: "Use $rust when implementing or reviewing Rust code."

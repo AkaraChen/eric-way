@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eric Python"
+  short_description: "Python commit checklist"
+  default_prompt: "Run $python-checklist before committing these Python changes."

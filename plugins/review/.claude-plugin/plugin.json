@@ -1,0 +1,18 @@
+{
+  "name": "review",
+  "version": "0.1.0",
+  "description": "Review code against Eric's standards, prepare GitHub pull requests for review, and produce Guided Review walkthroughs.",
+  "author": {
+    "name": "AkaraChen",
+    "url": "https://github.com/AkaraChen"
+  },
+  "homepage": "https://github.com/AkaraChen/eric-way",
+  "repository": "https://github.com/AkaraChen/eric-way",
+  "keywords": [
+    "review",
+    "pull-request",
+    "github",
+    "guided-review"
+  ],
+  "displayName": "Eric Review"
+}
