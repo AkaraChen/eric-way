@@ -2,7 +2,7 @@
 
 Rules live in the task-specific skills:
 
-- [Shared desktop principles](../skills/eric-desktop/SKILL.md)
-- [Tauri selection and command contracts](../skills/eric-tauri/SKILL.md)
-- [Electron browser capabilities and IPC](../skills/eric-electron/SKILL.md)
-- [Rust types and data contracts](../skills/eric-rust/SKILL.md)
+- [Shared desktop principles](../plugins/desktop/skills/desktop/SKILL.md)
+- [Tauri selection and command contracts](../plugins/tauri/skills/tauri/SKILL.md)
+- [Electron browser capabilities and IPC](../plugins/electron/skills/electron/SKILL.md)
+- [Rust types and data contracts](../plugins/rust/skills/rust/SKILL.md)
